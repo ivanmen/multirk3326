@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gameList>
+  <game>
+    <path>./Super Mario World (USA).sfc</path>
+    <name>Super Mario World</name>
+    <desc>Mario y Yoshi recorren Dinosaur Land para rescatar a la Princesa Peach de Bowser.</desc>
+    <image>./images/Super Mario World (USA).png</image>
+    <thumbnail>./images/Super Mario World (USA).png</thumbnail>
+    <rating>0.95</rating>
+    <releasedate>19901121T000000</releasedate>
+    <developer>Nintendo</developer>
+    <publisher>Nintendo</publisher>
+    <genre>Platform</genre>
+    <players>2</players>
+  </game>
+  <game>
+    <path>./Chrono Trigger (USA).sfc</path>
+    <name>Chrono Trigger</name>
+    <desc>Viajes en el tiempo con un grupo de héroes.</desc>
+    <rating>0.9</rating>
+    <genre>RPG</genre>
+  </game>
+  <game>
+    <path>./Missing Game (USA).sfc</path>
+    <name>Missing Game</name>
+    <desc>Entrada de gamelist sin rom en la SD.</desc>
+  </game>
+</gameList>

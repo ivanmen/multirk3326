@@ -1,0 +1,16 @@
+{
+  "name": "RG351V-TEST",
+  "romsRoot": "../testdata/roms",
+  "dataDir": "../testdata/data",
+  "stateDirs": ["../testdata/states"],
+  "saveDirs": ["../testdata/states"],
+  "listen": "127.0.0.1:47830",
+  "auth": false,
+  "scanIntervalSec": 900,
+  "stateRefreshSec": 30,
+  "multicast": {
+    "group": "239.255.42.99",
+    "port": 47831,
+    "intervalSec": 3
+  }
+}

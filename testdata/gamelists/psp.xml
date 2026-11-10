@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<gameList>
+	<provider>
+		<System>PSP</System>
+		<software>Skraper</software>
+		<database>ScreenScraper.fr</database>
+		<web>http://www.screenscraper.fr</web>
+	</provider>
+	<game>
+		<path>./007 From Russia with Love.cso</path>
+		<name>007 : From Russia with Love</name>
+		<desc>El agente más famoso de todos los tiempos llega a la portátil de Sony con una adaptación de su última aventura en plataformas domésticas, con nuevos contenidos y modo multijugador. Una frenética misión de Oriente a Occidente, recorriendo los parajes más variopintos y utilizando los mejores gadgets. Vuelve James Bond.</desc>
+		<image>./media/images/007 From Russia with Love.png</image>
+		<video>./media/videos/007 From Russia with Love.mp4</video>
+		<rating>0.6</rating>
+		<releasedate>20060413T000000</releasedate>
+		<developer>Electronic Arts</developer>
+		<publisher>Electronic Arts</publisher>
+		<genre>Disparos / 3ª persona-Disparos</genre>
+		<players>1-6</players>
+	</game>
+	<game>
+		<path>./r36s_rom_1785195903964_Mega Man - Maverick Hunter X (USA).iso</path>
+		<name>Mega Man - Maverick Hunter X (USA)</name>
+		<desc>Mega Man Maverick Hunter X is a remake of Mega Man X, which was originally released in 1993 and uses 16-bit graphics. Mega Man Maverick Hunter X uses realistic 3D graphics. The player controls the Maverick Hunter X, whose only weapon is the \"X Buster\", which acts as horizontal firepower. Upon completing the introductory level, players can choose one of eight areas; they have to proceed while fighting enemies to reach and fight bosses known as mavericks. Beating a Maverick will unlock their ability to use as an alternate weapon besides the X Buster. Using certain abilities on Mavericks will cause them to take more damage than usual. Hidden in several levels are Dr. Light capsules, which include armor parts that give X additional buffs. In Mega Man Maverick Hunter X, the position and stages of these capsules are changed. X, the main character, has access to a hidden technique based on the fighting game series Street Fighter, the Hadoken, which allows X to easily defeat any enemy. When all eight mavericks are defeated, Sigma is unlocked as the final boss of the game. If the player did not obtain Light's arm protectors, his superior Zero gives X power-ups in the final stage.</desc>
+		<developer>Capcom</developer>
+		<publisher>Capcom</publisher>
+		<releasedate>2006</releasedate>
+		<genre>Platform</genre>
+		<rating>0.8</rating>
+		<image>./media/images/r36s_rom_1785195903964_Mega Man - Maverick Hunter X (USA).webp</image>
+	</game>
+	<game>
+		<path>./The 3rd Birthday(PSP).iso</path>
+		<name>The 3rd Birthday</name>
+		<desc>Nueva York, 24 de diciembre del 2012. Una colmena enorme emerge del subsuelo, liberando a millones de criaturas conocidas con el nombre de “Twisted”, los torcidos, bestias inmundas que devoran a cualquier ser humano que encuentren. La única esperanza para la supervivencia de la humanidad yace en una mujer: Aya Brea.</desc>
+		<image>./media/images/The 3rd Birthday(PSP).png</image>
+		<video>./media/videos/The 3rd Birthday(PSP).mp4</video>
+		<rating>0.8</rating>
+		<releasedate>20110329T000000</releasedate>
+		<developer>Hexa Drive</developer>
+		<publisher>Square Enix</publisher>
+		<genre>Acción</genre>
+		<playcount>3</playcount>
+		<lastplayed>20260904T030020</lastplayed>
+	</game>
+</gameList>

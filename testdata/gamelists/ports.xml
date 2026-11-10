@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<gameList>
+	<game>
+		<path>./Blood.sh</path>
+		<name>Blood</name>
+		<playcount>4</playcount>
+		<lastplayed>20260723T225547</lastplayed>
+	</game>
+	<game>
+		<path>./Plants vs Zombies Neighborhood Defense.sh</path>
+		<name>Plants vs Zombies Neighborhood Defense</name>
+		<playcount>1</playcount>
+		<lastplayed>20260724T152023</lastplayed>
+	</game>
+	<game>
+		<path>./PvzPortable.sh</path>
+		<name>PvzPortable</name>
+		<playcount>3</playcount>
+		<lastplayed>20260724T151604</lastplayed>
+	</game>
+	<game>
+		<path>./mibot.sh</path>
+		<name>mibot</name>
+		<playcount>11</playcount>
+		<lastplayed>20260819T030857</lastplayed>
+	</game>
+	<game>
+		<path>./SDLPoP.sh</path>
+		<name>SDLPoP</name>
+		<playcount>2</playcount>
+		<lastplayed>20260903T205717</lastplayed>
+	</game>
+	<game>
+		<path>./Apotris.sh</path>
+		<name>Apotris</name>
+		<playcount>1</playcount>
+		<lastplayed>20260904T131130</lastplayed>
+	</game>
+	<game>
+		<path>./YouTube.sh</path>
+		<name>YouTube</name>
+		<playcount>27</playcount>
+		<lastplayed>20260904T130925</lastplayed>
+	</game>
+	<game>
+		<path>./StardewValley.sh</path>
+		<name>StardewValley</name>
+		<favorite>true</favorite>
+		<playcount>1</playcount>
+		<lastplayed>20260903T184248</lastplayed>
+	</game>
+	<game>
+		<path>./Ion Fury.sh</path>
+		<name>Ion Fury</name>
+		<playcount>5</playcount>
+		<lastplayed>20260909T014148</lastplayed>
+	</game>
+	<game>
+		<path>./YouTubePy.sh</path>
+		<name>YouTubePy</name>
+		<playcount>31</playcount>
+		<lastplayed>20260915T155239</lastplayed>
+	</game>
+</gameList>

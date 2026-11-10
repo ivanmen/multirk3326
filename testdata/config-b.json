@@ -1,0 +1,17 @@
+{
+  "name": "RG351V-B",
+  "romsRoot": "../testdata/roms",
+  "dataDir": "../testdata/data-b",
+  "stateDirs": ["../testdata/states-b"],
+  "saveDirs": ["../testdata/states-b"],
+  "listen": "0.0.0.0:47834",
+  "auth": true,
+  "httpListen": "",
+  "scanIntervalSec": 900,
+  "stateRefreshSec": 30,
+  "multicast": {
+    "group": "239.255.42.99",
+    "port": 47820,
+    "intervalSec": 3
+  }
+}

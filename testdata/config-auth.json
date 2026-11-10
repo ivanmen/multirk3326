@@ -1,0 +1,16 @@
+{
+  "name": "RG351P-AUTH-TEST",
+  "romsRoot": "../testdata/roms",
+  "dataDir": "../testdata/data-auth",
+  "stateDirs": ["../testdata/states"],
+  "saveDirs": ["../testdata/states"],
+  "listen": "127.0.0.1:47832",
+  "auth": true,
+  "scanIntervalSec": 900,
+  "stateRefreshSec": 30,
+  "multicast": {
+    "group": "239.255.42.99",
+    "port": 47820,
+    "intervalSec": 3
+  }
+}

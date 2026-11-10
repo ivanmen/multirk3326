@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<gameList>
+	<game>
+		<path>./PPersia2.conf</path>
+		<name>Prince of Persia 2: The Shadow and the Flame</name>
+		<desc>Prince of Persia 2: The Shadow and the Flame is the sequel to the original Prince of Persia. The Prince has been cast out of the palace and branded an imposter by a mysterious sorcerer named Jaffar, who has taken on his appearance. Now the Prince must battle his way through treacherous lands, fight deadly enemies, and uncover the secret of the Shadow and the Flame to reclaim his identity and save the kingdom.</desc>
+		<image>./images/PPersia2.png</image>
+		<rating>0.85</rating>
+		<releasedate>19931101T000000</releasedate>
+		<developer>Broderbund</developer>
+		<publisher>Broderbund</publisher>
+		<genre>Action/Platform</genre>
+		<playcount>1</playcount>
+		<lastplayed>20260828T200138</lastplayed>
+	</game>
+	<game>
+		<path>./RiseOfTheTraid.conf</path>
+		<name>Rise of the Triad: Dark War</name>
+		<desc>Rise of the Triad is a fast-paced first-person shooter developed by Apogee Software. You are part of H.U.N.T. (High-risk United Nations Taskforce), a special ops team sent to investigate a cult on an island off the coast of California. Features multiple playable characters, crazy weapons including missile launchers and the Drunk Missile, and intense arcade-style action.</desc>
+		<image>./images/RiseOfTheTraid.png</image>
+		<rating>0.80</rating>
+		<releasedate>19951201T000000</releasedate>
+		<developer>Apogee Software</developer>
+		<publisher>Apogee Software</publisher>
+		<genre>First-Person Shooter</genre>
+		<playcount>2</playcount>
+		<lastplayed>20260828T200113</lastplayed>
+	</game>
+</gameList>

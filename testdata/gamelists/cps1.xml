@@ -1,0 +1,506 @@
+<?xml version="1.0"?>
+<gameList>
+	<provider>
+		<System>Capcom Play System</System>
+		<software>Skraper</software>
+		<database>ScreenScraper.fr</database>
+		<web>http://www.screenscraper.fr</web>
+	</provider>
+	<game id="37359" source="ScreenScraper.fr">
+		<path>./cawing.zip</path>
+		<name>Carrier Air Wing (World 901012)</name>
+		<desc>Durante la década de los noventa, muchas cosas cambiaron en el mundo. La creciente cooperación entre antiguos rivales y la amistad entre las superpotencias del planeta fueron ejemplos de los cambios que se estaban produciendo en los escenarios político y económico del mundo, pero esta frágil paz no iba a durar mucho. En 1997, Rabu, un país ficticio de Oriente Medio, construyó varias armas de destrucción masiva, como misiles balísticos intercontinentales, bombas nucleares tácticas e incluso un arma láser táctica por satélite, capaz de atacar cualquier lugar del mundo. 
+ 
+Con semejante armamento en la mano y beneficiándose de varios terroristas en todo el mundo, Rabu estaba listo para declarar la guerra a la humanidad y aspirar a su sueño de conquista global.</desc>
+		<rating>0.85</rating>
+		<releasedate>19900101T000000</releasedate>
+		<developer>Capcom</developer>
+		<publisher>Capcom</publisher>
+		<genre>Shoot'em Up / Horizontal-Shoot'em Up</genre>
+		<players>1-2</players>
+		<hash />
+		<image>./media/images/cawing.png</image>
+		<video>./media/videos/cawing.mp4</video>
+		<genreid>260</genreid>
+	</game>
+	<game id="37362" source="ScreenScraper.fr">
+		<path>./ffight.zip</path>
+		<name>Final Fight (World, set 1)</name>
+		<desc>Final Fight es un videojuego  beat-em-up de 1989 desarrollado por Capcom. Es el primero de la serie de Final Fight.La historia se desarrolla en Metro City, una ciudad asolada por el crimen organizado en los años noventa. Su alcalde Mike Haggar, un antiguo Street Fighter, recibe una llamada misteriosa, que le anuncia que su hija Jessica ha sido secuestrada, y le pide que encienda la televisión. Haggar la enciende y descubre que se trata de Damnd, un cabecilla de la banda de Mad Gear. Ayudado por Guy y Cody Travers, amigos de la infancia de su hija, se dirigen a los suburbios, al Oeste de la Ciudad, donde se encuentra Damnd con Jessica, bloqueándose la entrada, junto con unos esbirros, y unos barriles de metal. Los dos personajes realizan su ataque especial para romper los obstáculos y empiezan el juego. pueden jugar   uno o dos jugadores.</desc>
+		<rating>0.8</rating>
+		<releasedate>19891201T000000</releasedate>
+		<developer>Capcom</developer>
+		<publisher>Capcom</publisher>
+		<genre>Beat'em Up</genre>
+		<players>1-2</players>
+		<hash />
+		<image>./media/images/ffight.png</image>
+		<video>./media/videos/ffight.mp4</video>
+		<genreid>263</genreid>
+	</game>
+	<game id="41441" source="ScreenScraper.fr">
+		<path>./ghouls.zip</path>
+		<name>Ghouls'n Ghosts (World)</name>
+		<desc>Han pasado tres años desde los acontecimientos de "Makaimura" y Arthur el caballero una vez más se encuentra luchando contra las horribles criaturas de Demon World. Los demonios ahora se apoderaron del reino y Arthur vuelve a casa para presenciar al único superviviente del castillo, su amado Gunievere, asesinado por el rey de los demonios, Lucifer. Arthur una vez más se embarca en una misión de un solo hombre para destruir a los invasores demoníacos y salvar el alma mortal de Gunievere.</desc>
+		<rating>0.9</rating>
+		<releasedate>19880101T000000</releasedate>
+		<developer>Capcom</developer>
+		<publisher>Capcom</publisher>
+		<genre>Plataformas / Luchador con desplazamiento-Plataformas</genre>
+		<players>1-2</players>
+		<hash />
+		<image>./media/images/ghouls.png</image>
+		<video>./media/videos/ghouls.mp4</video>
+		<genreid>258</genreid>
+	</game>
+	<game id="42020" source="ScreenScraper.fr">
+		<path>./knights.zip</path>
+		<name>Knights of the Round (World 911127)</name>
+		<desc>Knights of the Round es un juego de arcade lanzado por Capcom en 1991. Un beat 'em up de desplazamiento lateral basado libremente en la leyenda del Rey Arturo y los Caballeros de la Mesa Redonda, el juego presenta un nivel similar al de un videojuego de rol. sistema de avance, con luchadores que obtienen nuevas armas y armaduras a medida que avanzan en el juego; sin embargo, el jugador no puede elegir cómo actualizar su personaje: el sistema de subir de nivel es estático.</desc>
+		<rating>0.75</rating>
+		<releasedate>19910101T000000</releasedate>
+		<developer>Capcom</developer>
+		<publisher>Capcom</publisher>
+		<genre>Beat'em Up</genre>
+		<players>1-3</players>
+		<hash />
+		<image>./media/images/knights.png</image>
+		<video>./media/videos/knights.mp4</video>
+		<genreid>263</genreid>
+	</game>
+	<game id="37371" source="ScreenScraper.fr">
+		<path>./mtwins.zip</path>
+		<name>Mega Twins (World 900619)</name>
+		<desc>El juego presenta a dos gemelos que intentan recuperar el control de su tierra, Alurea, tras el inesperado ataque de un monstruo que destruye todo a su paso. Los habitantes de Alurea han vivido en paz durante mil años y han olvidado cómo luchar. Los únicos supervivientes del país, los hijos gemelos del rey, deben enfrentarse al desafío y devolver a su reino su antigua gloria. Los dos gemelos, de unos 15 años en la época del juego, se aventuran en busca de una piedra legendaria conocida como el "Dragon Blue Eyes", de la que se dice que puede volver a poner todo en orden.</desc>
+		<rating>0.8</rating>
+		<releasedate>19900101T000000</releasedate>
+		<developer>Capcom</developer>
+		<publisher>Capcom</publisher>
+		<genre>Plataformas / Luchador con desplazamiento-Plataformas</genre>
+		<players>1-2</players>
+		<hash />
+		<image>./media/images/mtwins.png</image>
+		<video>./media/videos/mtwins.mp4</video>
+		<genreid>258</genreid>
+	</game>
+	<game id="37372" source="ScreenScraper.fr">
+		<path>./nemo.zip</path>
+		<name>Nemo (World 901130)</name>
+		<desc>Una noche, mientras Nemo duerme, es visitado en un sueño por el rey de Slumberland, que invita a Nemo a jugar con la hija del rey, la princesa. Sin embargo, Nemo se encuentra incapaz de encontrar a la princesa, por lo que él y' Flip', un extraño compañero que también aparece en el sueño, deciden explorar Slumberland y encontrar al rey.
+
+Nemo es un shoot-em-up abstracto en el mundo de ensueño de Slumberland, un mundo surrealista en el que los juguetes de los niños corren como locos y deben ser destruidos. Nemo está armado con un bastón mágico que emite una explosión de magia para destruir a los diferentes enemigos, algunos de los cuales requieren múltiples golpes. Varios power-ups también aparecen a intervalos regulares para ayudar a Nemo en su búsqueda a través de siete difíciles etapas.</desc>
+		<rating>0.9</rating>
+		<releasedate>19900101T000000</releasedate>
+		<developer>Capcom</developer>
+		<publisher>Capcom</publisher>
+		<genre>Plataformas-Plataformas / Luchador con desplazamiento</genre>
+		<players>1-2</players>
+		<hash />
+		<image>./media/images/nemo.png</image>
+		<video>./media/videos/nemo.mp4</video>
+		<genreid>257</genreid>
+	</game>
+	<game id="37373" source="ScreenScraper.fr">
+		<path>./pang3.zip</path>
+		<name>Pang! 3 (Euro 950601)</name>
+		<desc>Se trata de una nueva secuela del éxito original de 1989. Continúa con el mismo sistema de juego de sus antecesores, pero mejorando gráficos así como la elección de varios niveles de dificultad.</desc>
+		<rating>0.85</rating>
+		<releasedate>19950101T000000</releasedate>
+		<developer>Mitchell</developer>
+		<publisher>Capcom</publisher>
+		<genre>Puzzle</genre>
+		<players>1-2</players>
+		<hash />
+		<image>./media/images/pang3.png</image>
+		<video>./media/videos/pang3.mp4</video>
+		<genreid>2816</genreid>
+	</game>
+	<game id="37374" source="ScreenScraper.fr">
+		<path>./pnickj.zip</path>
+		<name>Pnickies (Japan 940608)</name>
+		<desc>Pnickies es un juego de rompecabezas similar a Puyo Puyo, donde apilas bloques de gelatina de diferentes colores y buscas formar reacciones en cadena. La diferencia con Puyo Puyo es que los bloques no desaparecen al conectar un cierto número de bloques del mismo color. En cambio, existen bloques estrella que también tienen los mismos colores que los bloques normales. Para hacer que los bloques desaparezcan, el jugador debe formar un grupo conectado de bloques del mismo color que incluya dos bloques estrella. Una vez que se añade el segundo bloque estrella, el grupo afectado desaparece, y cualquier bloque que estuviera encima de alguna parte de este grupo caerá.</desc>
+		<rating>0.7</rating>
+		<releasedate>19940101T000000</releasedate>
+		<developer>Capcom</developer>
+		<publisher>Capcom</publisher>
+		<genre>Puzzle-Puzzle / Caída</genre>
+		<players>1-2</players>
+		<hash />
+		<image>./media/images/pnickj.png</image>
+		<video>./media/videos/pnickj.mp4</video>
+		<genreid>2816</genreid>
+	</game>
+	<game id="78892" source="ScreenScraper.fr">
+		<path>./megaman.zip</path>
+		<name>Rockman: The Power Battle (CPS1, USA 951006)</name>
+		<desc>¿Alguna vez te has imaginado un juego Rockman o Megaman que permita saltar todos los elementos de la plataforma y luchar contra los jefes? Esa es la idea principal en este juego! Elige entre Rockman/Megaman, Protoman o Bass y lucha contra los jefes clásicos de la serie. Ofrece grandes gráficos 2-D, control sólido, y un buen uso de la estrategia (ya que el orden correcto de las armas te librará de enemigos específicos en poco tiempo!).</desc>
+		<rating>0.75</rating>
+		<releasedate>19950101T000000</releasedate>
+		<developer>Capcom</developer>
+		<publisher>Capcom</publisher>
+		<genre>Lucha / Vs Co-op-Lucha</genre>
+		<players>1-2</players>
+		<hash />
+		<image>./media/images/megaman.png</image>
+		<video>./media/videos/megaman.mp4</video>
+		<genreid>262</genreid>
+	</game>
+	<game id="44111" source="ScreenScraper.fr">
+		<path>./wofa.zip</path>
+		<name>Sangokushi II (Asia 921005)</name>
+		<desc>Warriors of Fate es un beat' em up de desplazamiento lateral producido por Capcom, lanzado por primera vez como un juego de arcade operado por monedas en 1992 y que más tarde se adaptó a Sega Saturn y Sony PlayStation. Es el tercer juego de Capcom basado en el manga Tenchi wo Kurau, tras Dynasty Wars y Destiny of an Emperor.</desc>
+		<rating>0.8</rating>
+		<releasedate>19920901T000000</releasedate>
+		<developer>Capcom</developer>
+		<publisher>Capcom</publisher>
+		<genre>Beat'em Up</genre>
+		<players>1-3</players>
+		<hash />
+		<image>./media/images/wofch.png</image>
+		<video>./media/videos/wofch.mp4</video>
+		<genreid>263</genreid>
+	</game>
+	<game id="78903" source="ScreenScraper.fr">
+		<path>./mercsj.zip</path>
+		<name>Senjo no Okami II (Japan 900302)</name>
+		<desc>Estados Unidos se enfrenta a una grave crisis! El ex presidente ha sido secuestrado por un grupo de revolucionarios mientras viajaba por África Central para promover la paz mundial. Toma el control de tres soldados antiterroristas altamente cualificados y aventúrate a través de líneas enemigas para salvar al ex presidente y aniquilar al ejército rebelde en el proceso. Ofrece gráficos sólidos y sonido, un montón de armas y vehículos para usar y jefes de grandes dimensiones para derrotar.</desc>
+		<rating>0.9</rating>
+		<releasedate>19900101T000000</releasedate>
+		<developer>Capcom</developer>
+		<publisher>Capcom</publisher>
+		<genre>Disparos / Run and Gun-Disparos</genre>
+		<players>1-3</players>
+		<hash />
+		<image>./media/images/mercsj.png</image>
+		<video>./media/videos/mercsj.mp4</video>
+		<genreid>256</genreid>
+	</game>
+	<game id="42982" source="ScreenScraper.fr">
+		<path>./sf2.zip</path>
+		<name>Street Fighter II : The World Warrior (World 910522)</name>
+		<desc>Street Fighter II: The World Warrior es un videojuego de lucha competitiva, lanzado originalmente para las máquinas arcade en 1991. Es el segundo juego de la serie Street Fighter y la secuela del juego original, lanzado en 1987. Fue el decimocuarto título de Capcom, utilizar un hardware de sistema de CP. Street Fighter II ha mejorado muchos de los conceptos introducidos en el primer juego, incluyendo el uso de movimientos especiales basados ??en comandos, una configuración de seis botones, al tiempo que ofrecía a los jugadores una selección múltiple de personajes jugables, cada uno con su propio estilo de juego luchar. Street Fighter II también introdujo el sistema de combos? y el combate "frente a frente" entre dos jugadores.</desc>
+		<rating>0.85</rating>
+		<releasedate>19910101T000000</releasedate>
+		<developer>Capcom</developer>
+		<publisher>Capcom</publisher>
+		<genre>Lucha / Versus-Lucha</genre>
+		<players>1-2</players>
+		<hash />
+		<image>./media/images/sf2.png</image>
+		<video>./media/videos/sf2.mp4</video>
+		<genreid>262</genreid>
+	</game>
+	<game id="64254" source="ScreenScraper.fr">
+		<path>./sfzch.zip</path>
+		<name>Street Fighter Zero (CPS Changer, Japan 951020)</name>
+		<desc>El juego presenta varias características nuevas, ampliando en el sistema Super Combo anteriormente presentado en Super Street Fighter II Turbo, con gráficos dibujados en el mismo estilo caricaturesco de Capcom empleado en Darkstalkers y X-Men: Children of the Atom. La trama de Street Fighter Alpha se desarrolla después del Street Fighter original pero antes de Street Fighter II y, por lo tanto, el juego incluye versiones más jóvenes de personajes establecidos, así como personajes del Street Fighter original y Final Fight, y algunos que son nuevos en la serie.</desc>
+		<rating>0.9</rating>
+		<releasedate>19950101T000000</releasedate>
+		<developer>Capcom</developer>
+		<publisher>Capcom</publisher>
+		<genre>Lucha / 2D-Lucha</genre>
+		<players>1-2</players>
+		<hash />
+		<image>./media/images/sfzch.png</image>
+		<video>./media/videos/sfzch.mp4</video>
+		<genreid>262</genreid>
+	</game>
+	<game id="37380" source="ScreenScraper.fr">
+		<path>./strider.zip</path>
+		<name>Strider Hiryu (USA, B-Board 89624B-2)</name>
+		<desc>En 2048, un Hiryu Strider llamado Hiryu viaja por el mundo en busca del misterioso Meio, que reina en la Tierra desde su base lunar, y controla a Hiryu, armado con su espada Falchion, a través de cinco niveles que van desde la Unión Soviética hasta la selva tropical. Hiryu tiene la particularidad de ser capaz de colgarse en las paredes gracias a un gancho de metal, y también puede ser ayudado por dos animales robóticos (un halcón y un tigre).</desc>
+		<rating>0.85</rating>
+		<releasedate>19890101T000000</releasedate>
+		<developer>Capcom</developer>
+		<publisher>Capcom</publisher>
+		<genre>Plataformas-Plataformas / Luchador con desplazamiento</genre>
+		<players>1-2</players>
+		<hash />
+		<image>./media/images/strider.png</image>
+		<video>./media/videos/strider.mp4</video>
+		<genreid>257</genreid>
+	</game>
+	<game id="41078" source="ScreenScraper.fr">
+		<path>./dynwarjr.zip</path>
+		<name>Tenchi wo Kurau (Japan Resale Ver.)</name>
+		<desc>Este es un juego de desplazamiento lateral basado en un manga japones del mismo nombre y es una representación de las batallas históricas entre el reino de Shu y los rebeldes del Turbante Amarillo. Hasta dos jugadores asumen el papel de uno de los cuatro generales chinos que cabalgaban a caballo, cuyo objetivo es acabar con el "Huang Ching", la organización responsable de los disturbios de la dinastía Han, y acabar derrotando al tirano Dong Zhuo.</desc>
+		<rating>0.8</rating>
+		<releasedate>19890101T000000</releasedate>
+		<developer>Capcom</developer>
+		<publisher>Capcom</publisher>
+		<genre>Beat'em Up</genre>
+		<players>1-2</players>
+		<hash />
+		<image>./media/images/dynwarjr.png</image>
+		<video>./media/videos/dynwarjr.mp4</video>
+		<genreid>263</genreid>
+	</game>
+	<game id="44111" source="ScreenScraper.fr">
+		<path>./wofch.zip</path>
+		<name>Tenchi wo Kurau II: Sekiheki no Tatakai (CPS Changer, Japan 921031)</name>
+		<desc>Warriors of Fate es un beat' em up de desplazamiento lateral producido por Capcom, lanzado por primera vez como un juego de arcade operado por monedas en 1992 y que más tarde se adaptó a Sega Saturn y Sony PlayStation. Es el tercer juego de Capcom basado en el manga Tenchi wo Kurau, tras Dynasty Wars y Destiny of an Emperor.</desc>
+		<rating>0.8</rating>
+		<releasedate>19920901T000000</releasedate>
+		<developer>Capcom</developer>
+		<publisher>Capcom</publisher>
+		<genre>Beat'em Up</genre>
+		<players>1-3</players>
+		<hash />
+		<image>./media/images/wofch.png</image>
+		<video>./media/videos/wofch.mp4</video>
+		<genreid>263</genreid>
+	</game>
+	<game id="44111" source="ScreenScraper.fr">
+		<path>./wofj.zip</path>
+		<name>Tenchi wo Kurau II: Sekiheki no Tatakai (Japan 921031)</name>
+		<desc>Warriors of Fate es un beat' em up de desplazamiento lateral producido por Capcom, lanzado por primera vez como un juego de arcade operado por monedas en 1992 y que más tarde se adaptó a Sega Saturn y Sony PlayStation. Es el tercer juego de Capcom basado en el manga Tenchi wo Kurau, tras Dynasty Wars y Destiny of an Emperor.</desc>
+		<rating>0.8</rating>
+		<releasedate>19920901T000000</releasedate>
+		<developer>Capcom</developer>
+		<publisher>Capcom</publisher>
+		<genre>Beat'em Up</genre>
+		<players>1-3</players>
+		<hash />
+		<image>./media/images/wofch.png</image>
+		<video>./media/videos/wofch.mp4</video>
+		<genreid>263</genreid>
+	</game>
+	<game id="44111" source="ScreenScraper.fr">
+		<path>./wofsjc.zip</path>
+		<name>Tenchi wo Kurau II: Sekiheki no Tatakai</name>
+		<desc>Warriors of Fate es un beat' em up de desplazamiento lateral producido por Capcom, lanzado por primera vez como un juego de arcade operado por monedas en 1992 y que más tarde se adaptó a Sega Saturn y Sony PlayStation. Es el tercer juego de Capcom basado en el manga Tenchi wo Kurau, tras Dynasty Wars y Destiny of an Emperor.</desc>
+		<rating>0.8</rating>
+		<releasedate>19920901T000000</releasedate>
+		<developer>Capcom</developer>
+		<publisher>Capcom</publisher>
+		<genre>Beat'em Up</genre>
+		<players>1-3</players>
+		<hash />
+		<image>./media/images/wofch.png</image>
+		<video>./media/videos/wofch.mp4</video>
+		<genreid>263</genreid>
+	</game>
+	<game id="37375" source="ScreenScraper.fr">
+		<path>./punisher.zip</path>
+		<name>The Punisher (World 930422)</name>
+		<desc>Únete a la cruzada de Frank Castle por la justicia y la venganza en este juego arcade beat em up. Basado en el cómic de Marvel del mismo nombre, juega como el vigilante de sangre fría o su amigo Nick Fury (de SHIELD) en su misión de con las muchas bandas criminales y los focos delictivos subterráneos para paralizar el imperio criminal de Kingpin, y finalmente enfrentarse con el mismo y llevar la paz a + 
+Nueva York.</desc>
+		<rating>0.85</rating>
+		<releasedate>19930101T000000</releasedate>
+		<developer>Capcom</developer>
+		<publisher>Capcom</publisher>
+		<genre>Beat'em Up</genre>
+		<players>1-2</players>
+		<hash />
+		<image>./media/images/punisher.png</image>
+		<video>./media/videos/punisher.mp4</video>
+		<genreid>263</genreid>
+	</game>
+	<game id="37383" source="ScreenScraper.fr">
+		<path>./willow.zip</path>
+		<name>Willow (World)</name>
+		<desc>Willow es un juego de disparos de plataforma de desplazamiento lateral basado en la película del mismo nombre. Los jugadores asumen el papel de uno de los dos personajes: Willow Ufgood o Madmartigan. La misión del héroe es rescatar a la bebé Elora Danan de la malvada reina Bavmorda y traerla de vuelta sana y salva. Si la búsqueda fracasa, la Reina hundirá al mundo en la oscuridad y el caos.  
+ 
+El juego consta de 6 niveles, cada uno representando una escena de la película. Los enemigos derrotados tiran monedas de oro que pueden ser recogidas por el jugador. Además, cada nivel está plagado de cofres cerrados con llave que se pueden abrir a tiros. El oro se puede utilizar para comprar un número de armas y power-ups del carácter de una tienda cercana (representado en la pantalla por un viejo sabio). Todos los power-ups permanecerán con el jugador hasta que se pierdan todas las vidas y el juego haya terminado.</desc>
+		<rating>0.8</rating>
+		<releasedate>19890101T000000</releasedate>
+		<developer>Capcom</developer>
+		<publisher>Lucasfilm Games</publisher>
+		<genre>Plataformas-Plataformas / Tirador con desplazamiento</genre>
+		<players>1-2</players>
+		<hash />
+		<image>./media/images/willow.png</image>
+		<video>./media/videos/willow.mp4</video>
+		<genreid>257</genreid>
+	</game>
+	<game id="39873" source="ScreenScraper.fr">
+		<path>./1941.zip</path>
+		<name>1941: Counter Attack (World 900227)</name>
+		<desc>La precuela de 1942 es un shooter de arriba hacia abajo ambientado en la Segunda Guerra Mundial. Uno o dos jugadores controlan un P-38 o un Mosquito y enfrentan oleadas de aviones enemigos y jefes al final de cada nivel. Los jugadores disparan con munición infinita y pueden recolectar power-ups que mejoran las armas o permiten lanzar ataques especiales que dañan a todos los enemigos en pantalla o a los jefes. 
+ 
+El avión tiene una barra de vida con tres puntos iniciales, que disminuye con cada disparo recibido o al usar ataques especiales, pero se puede restaurar con power-ups o al finalizar niveles. Mantener presionado el botón de disparo carga un potente ataque especial, cuya fuerza depende del arma equipada. Otros power-ups incluyen aviones auxiliares y aviones fantasmas. 
+ 
+El juego introduce el sistema de continues, permitiendo a los jugadores reanudar hasta tres veces, añadiendo un punto a la puntuación por cada uso. Con sus mecánicas únicas y multijugador, esta entrega amplía la fórmula clásica de la saga 194x.</desc>
+		<image>./media/images/1941.png</image>
+		<video>./media/videos/1941.mp4</video>
+		<rating>0.8</rating>
+		<releasedate>19900201T000000</releasedate>
+		<developer>Capcom</developer>
+		<publisher>Capcom</publisher>
+		<genre>Shoot'em Up / Vertical-Shoot'em Up</genre>
+		<players>1-2</players>
+		<playcount>1</playcount>
+		<lastplayed>20260503T030826</lastplayed>
+		<gametime>95</gametime>
+		<genreid>260</genreid>
+	</game>
+	<game id="57920" source="ScreenScraper.fr">
+		<path>./msword.zip</path>
+		<name>Magic Sword: Heroic Fantasy (World 900725)</name>
+		<desc>Magic Sword: Heroic Fantasy, es un juego arcade de fantasía de desplazamiento lateral lanzado por Capcom en 1990. El jugador puede usar una espada, hacha o magia, y también puede rescatar y reclutar aliados potenciales de varias clases de personajes, cada uno de los cuales tiene sus propias habilidades especiales. Tres años antes, Capcom había lanzado el Black Tiger similar en 1987.</desc>
+		<image>./media/images/msword.png</image>
+		<video>./media/videos/msword.mp4</video>
+		<rating>0.9</rating>
+		<releasedate>19900101T000000</releasedate>
+		<developer>Capcom</developer>
+		<publisher>Capcom</publisher>
+		<genre>Plataformas-Plataformas / Luchador con desplazamiento</genre>
+		<players>1-2</players>
+		<playcount>1</playcount>
+		<lastplayed>20260503T211434</lastplayed>
+		<gametime>11</gametime>
+		<genreid>257</genreid>
+	</game>
+	<game id="37379" source="ScreenScraper.fr">
+		<path>./slammast.zip</path>
+		<name>Saturday Night Slam Masters (World 930713)</name>
+		<desc>Un juego de lucha 1 a 1 en el que los jugadores eligen entre 10 luchadores diferentes y van al ring para tratar de derrotar a sus oponentes más poderosos. Cada luchador tiene una variedad de movimientos, incluyendo su propio "super slam" especial. El objetivo del juego es ganar y defender el campeonato colocando un bloqueo de sumisión en tu oponente.</desc>
+		<image>./media/images/slammast.png</image>
+		<video>./media/videos/slammast.mp4</video>
+		<rating>0.9</rating>
+		<releasedate>19930101T000000</releasedate>
+		<developer>Capcom</developer>
+		<publisher>Capcom</publisher>
+		<genre>Deportes-Deportes / Lucha libre</genre>
+		<players>1-4</players>
+		<playcount>1</playcount>
+		<lastplayed>20260503T212035</lastplayed>
+		<gametime>332</gametime>
+		<genreid>1536</genreid>
+	</game>
+	<game>
+		<path>./3wonders.zip</path>
+		<name>Three Wonders (World 910520)</name>
+		<desc>Three Wonders es uno de esas joyas ocultas de Capcom, publicada en 1991 solamente para las maquinas arcade. Es un juego de plataformas de acción al estilo de Ghosts'n Goblins pero con la particularidad que "Three Wonders" contiene 3 juegos dentro del mismo. El principal, Midnight Wanderers, es un clasico plataformas de acción realmente muy bueno. El segundo, y que de alguna forma le da continuidad al principal, es Chariot, un shoot 'em up volando por el cielo al estilo 1942. Y el tercer juego, no tiene continuidad con ninguno de los anteriores, es totalmente diferente pero es divertido y se llama Don't Pull, un videojuego de rompecabezas al estilo bomberman donde un conejito rosa llamado Don y una ardilla llamada Pull van empujando bloques para aplastar a los monstruos.</desc>
+		<image>./media/images/3wonders.png</image>
+		<video>./media/videos/3wonders.mp4</video>
+		<rating>0.7</rating>
+		<releasedate>19910101T000000</releasedate>
+		<developer>Capcom</developer>
+		<publisher>Capcom</publisher>
+		<genre>Plataformas / Tirador con desplazamiento-Plataformas-Compilación</genre>
+		<players>1-2</players>
+		<playcount>1</playcount>
+		<lastplayed>20260608T073728</lastplayed>
+	</game>
+	<game>
+		<path>./sf2hf.zip</path>
+		<name>Street Fighter II' : Hyper Fighting (World 921209)</name>
+		<desc>Street Fighter II': Hyper Fighting es la segunda mejora de la serie Street Fighter II después de Street Fighter II': Champion Edition. Esta es una simple modificación del juego realizada por Capcom USA (James Goddard) para tratar de contrarrestar la proliferación de muchos hacks no oficiales disponibles en ese momento, e incorporar en el juego oficial algunas de las mejoras más populares aportadas por ellos, incluyendo la velocidad de ataque y nuevas opciones en algunos ganchos.</desc>
+		<image>./media/images/sf2hf.png</image>
+		<video>./media/videos/sf2hf.mp4</video>
+		<rating>0.85</rating>
+		<releasedate>19920101T000000</releasedate>
+		<developer>Capcom</developer>
+		<publisher>Capcom</publisher>
+		<genre>Lucha-Lucha / Versus</genre>
+		<players>1-2</players>
+		<playcount>1</playcount>
+		<lastplayed>20260616T012925</lastplayed>
+	</game>
+	<game>
+		<path>./varth.zip</path>
+		<name>Varth: Operation Thunderstorm (World 920714)</name>
+		<desc>La historia se desarrolla en el planeta Varth, perdido en el culo del universo. Allí, los seres vivos viven bajo la férula del superordenador Delta-7 que gobierna sus vidas y piensa por ellos. Todo estaría bien en el mejor de todos los mundos si no fuera por DUD, un programa malicioso que parasita el ordenador y lo controla. A partir de entonces, es un desastre: el Delta-7 ordena a la humanidad que se destroce entre sí, provocando que el 60% de la población desaparezca, y luego lanza una armada de vehículos de guerra para reprimir a los supervivientes. Afortunadamente, dos viejas naves, Saber y Scimitar, no responden a la llamada. En su lugar, sus pilotos liderarán el asalto a las máquinas locas: así es como comienza la Operación Tormenta Eléctrica.</desc>
+		<image>./media/images/varth.png</image>
+		<video>./media/videos/varth.mp4</video>
+		<rating>0.7</rating>
+		<releasedate>19920101T000000</releasedate>
+		<developer>Capcom</developer>
+		<publisher>Capcom</publisher>
+		<genre>Shoot'em Up / Vertical-Shoot'em Up</genre>
+		<players>1-2</players>
+		<playcount>1</playcount>
+		<lastplayed>20260616T020024</lastplayed>
+	</game>
+	<game>
+		<path>./kod.zip</path>
+		<name>The King of Dragons (World 910805)</name>
+		<desc>The King of Dragons es un juego de 1991 que permite a los jugadores elegir entre cinco personajes (Elfo, Mago, Luchador, Clérigo y Enano) para viajar por el reino de Malus y derrotar a los monstruos que han asumido el control, así como su líder, el dragón rojo Gildiss. Al igual que Knights of the Round de Capcom, cuenta con un sistema de avance de nivel, permitiendo que los atributos de los personajes sean actualizados a medida que los jugadores avanzan a través del juego. El escenario es muy similar al de Dungeons &amp; Dragons y otros mundos de fantasía medieval, con monstruos familiares como Orcos, Gnomos, Arpías, Wyverns, Cíclopes y Minotauros. El juego fue portado a Super NES y lanzado en 1994. Una versión emulada del juego fue lanzada como parte de Capcom Classics Collection Vol. 2 y Capcom Classics Colección: Reloaded.</desc>
+		<image>./media/images/kod.png</image>
+		<video>./media/videos/kod.mp4</video>
+		<rating>0.6</rating>
+		<releasedate>19910101T000000</releasedate>
+		<developer>Capcom</developer>
+		<publisher>Capcom</publisher>
+		<genre>Beat'em Up-Lucha / 2.5D-Lucha</genre>
+		<players>1-3</players>
+		<playcount>2</playcount>
+		<lastplayed>20260620T062006</lastplayed>
+	</game>
+	<game>
+		<path>./unsquad.zip</path>
+		<name>Area 88 (USA)</name>
+		<desc>U.N. escuadrón es shoot'em up. Puedes jugar como uno de los tres pilotos disponibles: Shin Kazama, Micky Schymon o Greg Gates. Tu misión es repeler al enemigo desde el espacio aéreo del área 88. El jugador comienza con un F8E Crusader, el avión más débil del juego, pero a medida que las misiones progresan, ganará suficiente dinero para mejorar su equipo.</desc>
+		<image>./media/images/unsquad.png</image>
+		<video>./media/videos/unsquad.mp4</video>
+		<rating>0.7</rating>
+		<releasedate>19890101T000000</releasedate>
+		<developer>Capcom</developer>
+		<publisher>Capcom</publisher>
+		<genre>Shoot'em Up / Horizontal-Shoot'em Up</genre>
+		<players>1-2</players>
+		<playcount>4</playcount>
+		<lastplayed>20260822T141158</lastplayed>
+	</game>
+	<game>
+		<path>./captcomm.zip</path>
+		<name>Captain Commando (World 911202)</name>
+		<desc>El Capitán Comando se encuentra en un futuro lleno de crímenes en el año 2026, donde un superhéroe llamado Capitán Comando, asistido por sus tres fieles Compañeros de Comando, se levanta para proteger la Tierra y toda la Galaxia de una pandilla de criminales superpoderosos.</desc>
+		<image>./media/images/captcomm.png</image>
+		<video>./media/videos/captcomm.mp4</video>
+		<rating>0.9</rating>
+		<releasedate>19910928T000000</releasedate>
+		<developer>Capcom</developer>
+		<publisher>Capcom</publisher>
+		<genre>Beat'em Up</genre>
+		<players>1-4</players>
+		<playcount>2</playcount>
+		<lastplayed>20260822T165740</lastplayed>
+	</game>
+	<game>
+		<path>./dino.zip</path>
+		<name>Cadillacs and Dinosaurs (World 930201)</name>
+		<desc>El argumento se basa en el cómic Cadillacs and Dinosaurs y transcurre en la "Ciudad en el mar" y su vecina selva cercana. La historia comienza 500 años después del siglo XX, cuando una banda llamada los "Black Marketeers" empieza a cazar dinosaurios para servir a un propósito desconocido. El continuo proceso de caza ha hecho que los dinosaurios se vuelvan violentos y empiecen a atacar pueblos y personas. Para que las cosas vuelvan a su cauce, el mecánico y chamán Jack Tenrec, la diplomática y exploradora de profesión Hannah Dundee, el amigo e ingeniero Mustapha Cairo y el misterioso Mess O'Bradovich han decidido aliarse contra las malvadas acciones de los Black Marketeer. Los protagonistas llegan a "la Ciudad en el Mar", desde donde sospechan que opera toda la red de cazadores.</desc>
+		<image>./media/images/dino.png</image>
+		<video>./media/videos/dino.mp4</video>
+		<rating>0.75</rating>
+		<releasedate>19930101T000000</releasedate>
+		<developer>Capcom</developer>
+		<publisher>Capcom</publisher>
+		<genre>Beat'em Up</genre>
+		<players>1-3</players>
+		<playcount>1</playcount>
+		<lastplayed>20260822T165647</lastplayed>
+	</game>
+	<game>
+		<path>./sf2ce.zip</path>
+		<name>Street Fighter II' : Champion Edition (World 920513)</name>
+		<desc>Desde los rincones del globo vienen doce de los luchadores más duros para merodear por las calles. Elige a tu campeón y entra en la arena como uno de los ocho desafíos originales o como uno de los cuatro Grandes Maestros! Golpea a tu oponente como Balrog y noquéalo para el marcador. Sube por encima de tu presa como Sagat y déjala aturdida con tu increíble Tiger Shot. Corta a tu oponente con la garra de Vega y haz que corran a cubierto. O infunde miedo en tus enemigos como M. Bison, el Gran Maestre más grande de todos ellos!</desc>
+		<image>./media/images/sf2ce.png</image>
+		<video>./media/videos/sf2ce.mp4</video>
+		<rating>0.9</rating>
+		<releasedate>19920101T000000</releasedate>
+		<developer>Capcom</developer>
+		<publisher>Capcom</publisher>
+		<genre>Lucha-Lucha / Versus</genre>
+		<players>1-2</players>
+		<playcount>1</playcount>
+		<lastplayed>20260828T201110</lastplayed>
+	</game>
+	<game>
+		<path>./mbombrd.zip</path>
+		<name>Muscle Bomber Duo : Ultimate Team Battle (World 931206)</name>
+		<desc>Un día, Ortega desapareció repentinamente. Se le consideraba el eje del deporte y su inesperada desaparición hizo que el CPWA entrara en una era de confusión y desorden. La BPWA, una oscura organización de lucha clandestina, eligió aprovechar esta oportunidad y comenzó a moverse. Con "Fighters of Muscle Bomber = Destiny" como tema, los jefes ejecutivos de CPWA decidieron llevar a cabo una gira mundial llamada "Crash Carnival,? para decidir el nuevo rey de la CPWA.</desc>
+		<image>./media/images/mbombrd.png</image>
+		<video>./media/videos/mbombrd.mp4</video>
+		<rating>0.8</rating>
+		<releasedate>19930101T000000</releasedate>
+		<developer>Capcom</developer>
+		<publisher>Capcom</publisher>
+		<genre>Deportes / Lucha libre-Deportes</genre>
+		<players>1-4</players>
+		<playcount>2</playcount>
+		<lastplayed>20261011T135427</lastplayed>
+	</game>
+</gameList>

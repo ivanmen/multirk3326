@@ -1,0 +1,1506 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MULTIRK · Prototipo pixel art</title>
+<link rel="icon" href="assets/icon3.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0716;
+    --bg2:#120c26;
+    --panel:#1b1338;
+    --panel2:#241a4a;
+    --panel3:#2e2260;
+    --line:#3b2c6e;
+    --ink:#050310;
+    --text:#f2ecff;
+    --muted:#a99bd6;
+    --dim:#6f639c;
+    --lime:#a8ff60;
+    --cyan:#5ce1e6;
+    --amber:#ffc94a;
+    --pink:#ff6bb5;
+    --red:#ff5d5d;
+    --pixel:'Press Start 2P',monospace;
+    --body:'VT323',monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    background:
+      radial-gradient(700px 420px at 12% -10%, #241a4a 0%, transparent 60%),
+      radial-gradient(600px 420px at 105% 110%, #1b2b32 0%, transparent 55%),
+      repeating-linear-gradient(45deg, rgba(255,255,255,.018) 0 2px, transparent 2px 5px),
+      var(--bg);
+    color:var(--text);
+    font-family:var(--body);
+    font-size:17px;
+    -webkit-font-smoothing:none;
+    display:flex;
+    justify-content:center;
+    padding:22px;
+  }
+  .stage{display:flex;gap:26px;align-items:flex-start;max-width:1160px;width:100%}
+
+  /* ---------------- rail ---------------- */
+  .rail{width:250px;flex:0 0 250px;padding-top:2px}
+  .brand{display:flex;gap:12px;align-items:center;margin-bottom:20px}
+  .logo{
+    width:44px;height:44px;border:3px solid var(--ink);
+    background:var(--panel2);
+    box-shadow:4px 4px 0 #000;display:grid;place-items:center;overflow:hidden;
+  }
+  .logo img{width:100%;height:100%;object-fit:cover;image-rendering:pixelated;display:block}
+  .brand h1{font-family:var(--pixel);font-size:14px;margin:0;letter-spacing:1px;color:var(--lime);text-shadow:2px 2px 0 #000}
+  .brand p{margin:5px 0 0;font-size:15px;color:var(--dim);letter-spacing:1px}
+
+  .screens{display:flex;flex-direction:column;gap:3px}
+  .railBtn{
+    appearance:none;border:2px solid transparent;background:transparent;color:var(--muted);
+    display:flex;align-items:center;gap:10px;width:100%;padding:8px 9px;cursor:pointer;
+    text-align:left;font-family:var(--body);font-size:17px;letter-spacing:.5px;
+  }
+  .railBtn span{
+    font-family:var(--pixel);font-size:7px;color:var(--dim);
+    border:2px solid var(--line);padding:3px 4px;min-width:24px;text-align:center;background:var(--bg2);
+  }
+  .railBtn:hover{color:var(--text);border-color:var(--line)}
+  .railBtn.is-active{
+    color:var(--ink);background:var(--lime);border-color:var(--ink);
+    box-shadow:3px 3px 0 #000;
+  }
+  .railBtn.is-active span{background:var(--ink);color:var(--lime);border-color:var(--ink)}
+
+  .railNote{
+    margin-top:20px;padding:12px;border:3px solid var(--line);background:var(--bg2);
+    box-shadow:4px 4px 0 #000;font-size:15px;line-height:1.25;color:var(--muted);
+  }
+  .railNote strong{display:block;font-family:var(--pixel);font-size:7px;color:var(--amber);margin-bottom:9px;letter-spacing:1px}
+  .railNote ul{margin:0;padding-left:16px}
+  .railNote li{margin:5px 0}
+  .railNote code{font-family:var(--pixel);font-size:7px;color:var(--cyan)}
+
+  /* ---------------- phone ---------------- */
+  .phoneWrap{position:relative;flex:0 0 auto}
+  .phone{
+    width:376px;height:clamp(620px,calc(100vh - 52px),790px);
+    border:6px solid var(--ink);border-radius:6px;padding:7px;
+    background:linear-gradient(160deg,#241a4a,#0c0820 55%,#2b2160);
+    box-shadow:0 0 0 4px var(--line), 10px 10px 0 rgba(0,0,0,.55);
+    position:relative;
+  }
+  .phone::before{
+    content:"";position:absolute;inset:2px;pointer-events:none;
+    border:2px solid rgba(255,255,255,.05);
+  }
+  .phoneScreen{
+    width:100%;height:100%;overflow:hidden;position:relative;background:var(--bg2);
+    display:flex;flex-direction:column;border:2px solid #000;
+  }
+  .phoneScreen::after{
+    content:"";position:absolute;inset:0;pointer-events:none;z-index:100;
+    background:repeating-linear-gradient(0deg, rgba(0,0,0,.22) 0 1px, transparent 1px 3px);
+    opacity:.35;mix-blend-mode:multiply;
+  }
+  .statusbar{
+    height:30px;flex:0 0 30px;display:flex;align-items:center;justify-content:space-between;
+    padding:0 10px;font-family:var(--pixel);font-size:7px;color:var(--lime);
+    background:#070412;border-bottom:2px solid #000;position:relative;z-index:40;
+  }
+  .statusbar .right{display:flex;gap:8px;align-items:center}
+  .statusbar svg{display:block;shape-rendering:crispEdges}
+  .ico12{width:12px;height:12px;image-rendering:pixelated;display:block}
+  .ico14{width:14px;height:14px;image-rendering:pixelated;display:block}
+  .ico20{width:20px;height:20px;image-rendering:pixelated;display:block}
+  .ico32{width:32px;height:32px;image-rendering:pixelated;display:block}
+  .ico40{width:40px;height:40px;image-rendering:pixelated;display:block}
+
+  .viewport{flex:1;position:relative;overflow:hidden}
+  .screen{position:absolute;inset:0;display:none;flex-direction:column;animation:pop .14s steps(2)}
+  .screen.is-active{display:flex}
+  @keyframes pop{from{opacity:0}to{opacity:1}}
+
+  .appbar{flex:0 0 auto;display:flex;align-items:center;gap:9px;padding:10px 12px 8px;background:var(--bg2);border-bottom:2px solid #000}
+  .appbar h2{font-family:var(--pixel);font-size:11px;margin:0;line-height:1.4;letter-spacing:.5px}
+  .kicker{margin:0 0 4px;font-family:var(--pixel);font-size:6px;letter-spacing:2px;color:var(--cyan)}
+  .appbar .grow{flex:1}
+  .iconBtn{
+    width:30px;height:30px;border:3px solid var(--ink);background:var(--panel2);
+    color:var(--lime);display:grid;place-items:center;cursor:pointer;
+    box-shadow:2px 2px 0 #000;font-family:var(--pixel);font-size:9px;
+  }
+  .iconBtn:active{transform:translate(2px,2px);box-shadow:none}
+  .back{
+    width:30px;height:30px;border:3px solid var(--ink);background:var(--panel2);color:var(--text);
+    display:grid;place-items:center;cursor:pointer;font-family:var(--pixel);font-size:9px;
+    box-shadow:2px 2px 0 #000;
+  }
+  .back:active{transform:translate(2px,2px);box-shadow:none}
+
+  .content{flex:1;overflow-y:auto;padding:10px 12px 16px;scrollbar-width:none}
+  .content::-webkit-scrollbar{display:none}
+  .content.flush{padding:0}
+  .center{display:flex;flex-direction:column;align-items:center}
+
+  /* ---------------- generic ---------------- */
+  .btn{
+    appearance:none;border:3px solid var(--ink);background:var(--panel2);color:var(--text);
+    padding:11px 12px;font-family:var(--pixel);font-size:8px;line-height:1.6;cursor:pointer;
+    width:100%;box-shadow:4px 4px 0 #000;letter-spacing:.5px;
+  }
+  .btn:active{transform:translate(4px,4px);box-shadow:none}
+  .btn-primary{background:var(--lime);color:var(--ink)}
+  .btn-cyan{background:var(--cyan);color:var(--ink)}
+  .btn-ghost{background:var(--panel2);color:var(--text)}
+  .btn:disabled{opacity:.4;cursor:not-allowed;box-shadow:4px 4px 0 #000}
+
+  .muted{color:var(--muted)}
+  .dim{color:var(--dim)}
+  .hidden{display:none !important}
+  .sectionLabel{
+    font-family:var(--pixel);font-size:7px;letter-spacing:1px;color:var(--dim);
+    margin:14px 2px 8px;display:flex;align-items:center;gap:6px;
+  }
+  .sectionLabel::before{content:"";width:7px;height:7px;background:var(--amber);box-shadow:1px 1px 0 #000}
+  .pill{
+    display:inline-flex;align-items:center;gap:5px;padding:3px 6px;font-family:var(--pixel);
+    font-size:6px;border:2px solid var(--line);background:var(--bg2);color:var(--muted);
+    letter-spacing:.5px;white-space:nowrap;
+  }
+  .pill.lime{color:var(--lime);border-color:var(--lime);background:rgba(168,255,96,.08)}
+  .pill.amber{color:var(--amber);border-color:var(--amber);background:rgba(255,201,74,.08)}
+  .pill.cyan{color:var(--cyan);border-color:var(--cyan);background:rgba(92,225,230,.08)}
+  .pill.red{color:var(--red);border-color:var(--red);background:rgba(255,93,93,.08)}
+  .dot{width:5px;height:5px;background:currentColor}
+  code{font-family:var(--pixel);font-size:7px;color:var(--cyan);background:#0a0618;padding:2px 4px;border:1px solid #000}
+  .footnote{font-size:15px;line-height:1.25;color:var(--dim);margin:12px 2px 0}
+  .hr{height:3px;border:0;background:repeating-linear-gradient(90deg,var(--line) 0 6px,transparent 6px 10px);margin:12px 0}
+
+  /* ---------------- tabbar ---------------- */
+  .tabbar{
+    flex:0 0 auto;display:flex;justify-content:space-around;align-items:center;
+    padding:7px 4px 9px;border-top:3px solid #000;background:#070412;z-index:30;
+  }
+  .tabbar button{
+    appearance:none;border:2px solid transparent;background:transparent;color:var(--dim);
+    display:flex;flex-direction:column;align-items:center;gap:4px;
+    font-family:var(--pixel);font-size:5.5px;cursor:pointer;padding:4px 5px;letter-spacing:.3px;
+  }
+  .tabbar button svg{shape-rendering:crispEdges;opacity:.8}
+  .tabbar button.is-active{color:var(--lime);border-color:var(--line);background:var(--panel)}
+  .tabbar button.is-active svg{opacity:1}
+
+  /* ---------------- discover ---------------- */
+  .radar{position:relative;height:172px;display:grid;place-items:center;margin:4px 0 2px}
+  .radar .ring{position:absolute;border:2px dashed var(--line);width:84px;height:84px}
+  .radar .r2{width:128px;height:128px;border-style:dotted}
+  .radar .r3{width:170px;height:170px}
+  .radar.searching .ring{animation:blink .7s steps(2) infinite}
+  .radar.searching .r2{animation-delay:.2s}
+  .radar.searching .r3{animation-delay:.4s}
+  @keyframes blink{50%{border-color:var(--lime)}}
+  .radarCore{
+    width:66px;height:66px;border:3px solid var(--ink);background:var(--panel2);
+    box-shadow:4px 4px 0 #000, inset 0 0 0 2px var(--line);display:grid;place-items:center;
+    position:relative;z-index:2;
+  }
+  .radarCore svg{shape-rendering:crispEdges}
+  .radar.searching .radarCore{animation:tick .6s steps(2) infinite}
+  @keyframes tick{50%{background:var(--panel3)}}
+  .lead{text-align:center;font-size:16px;color:var(--muted);margin:0 0 12px}
+
+  .device{
+    display:flex;align-items:center;gap:9px;width:100%;text-align:left;
+    background:var(--panel);border:3px solid var(--ink);padding:9px;margin-bottom:8px;
+    cursor:pointer;color:var(--text);font-family:var(--body);box-shadow:4px 4px 0 #000;
+  }
+  .device:hover{background:var(--panel2)}
+  .device:active{transform:translate(4px,4px);box-shadow:none}
+  .device .dIcon{
+    width:36px;height:36px;flex:0 0 36px;display:grid;place-items:center;
+    border:3px solid var(--ink);background:var(--panel3);
+  }
+  .device .dBody{flex:1;min-width:0}
+  .device .dBody strong{display:block;font-family:var(--pixel);font-size:7.5px;line-height:1.5}
+  .device .dBody small{display:block;color:var(--cyan);font-size:14px;margin-top:3px;letter-spacing:.5px}
+  .chev{font-family:var(--pixel);font-size:11px;color:var(--lime)}
+
+  /* ---------------- pair ---------------- */
+  .pairArt{
+    width:64px;height:64px;border:3px solid var(--ink);background:var(--panel2);
+    display:grid;place-items:center;margin:10px 0 12px;box-shadow:4px 4px 0 #000;
+  }
+  .pin{display:flex;gap:5px;margin:14px 0 2px}
+  .pin span{
+    width:36px;height:42px;border:3px solid var(--line);background:#0a0618;
+    display:grid;place-items:center;font-family:var(--pixel);font-size:13px;color:var(--text);
+  }
+  .pin span.filled{border-color:var(--lime);background:rgba(168,255,96,.1);color:var(--lime)}
+  .pin.ok span{border-color:var(--lime);background:var(--lime);color:var(--ink)}
+  .pin.err span{border-color:var(--red);background:rgba(255,93,93,.15)}
+  .pin.err{animation:shake .3s steps(2)}
+  @keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+  .keypad{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;width:100%;margin:14px 0 10px}
+  .keypad button{
+    border:3px solid var(--ink);background:var(--panel2);color:var(--text);
+    height:40px;font-family:var(--pixel);font-size:11px;cursor:pointer;box-shadow:3px 3px 0 #000;
+  }
+  .keypad button:active{transform:translate(3px,3px);box-shadow:none}
+  .hint{font-size:15px;color:var(--amber);margin:8px 0 0;text-align:center}
+  .pinErr{font-size:15px;color:var(--red);margin:6px 0 0}
+
+  /* ---------------- console cards ---------------- */
+  .console{
+    border:3px solid var(--ink);background:var(--panel);padding:10px;margin-bottom:9px;
+    box-shadow:4px 4px 0 #000;
+  }
+  .console .top{display:flex;align-items:center;gap:8px}
+  .console .avatar{
+    width:38px;height:38px;border:3px solid var(--ink);background:var(--panel3);
+    display:grid;place-items:center;flex:0 0 38px;
+  }
+  .console h3{margin:0;font-family:var(--pixel);font-size:8px;line-height:1.5}
+  .console .ip{font-size:14px;color:var(--cyan);margin-top:4px;letter-spacing:.5px}
+  .stats{display:flex;margin:9px 0 9px;border-top:2px dashed var(--line);padding-top:8px}
+  .stat{flex:1;text-align:center}
+  .stat b{display:block;font-family:var(--pixel);font-size:9px;color:var(--lime)}
+  .stat small{display:block;font-family:var(--pixel);font-size:5.5px;color:var(--dim);margin-top:4px;letter-spacing:.5px}
+  .stat + .stat{border-left:2px dashed var(--line)}
+
+  .banner{
+    display:flex;gap:9px;align-items:flex-start;padding:9px;margin:7px 0;
+    border:3px solid var(--amber);background:rgba(255,201,74,.07);
+  }
+  .banner p{margin:0;font-size:15px;line-height:1.2;color:#ffe6a8}
+  .banner b{color:var(--amber)}
+
+  /* ---------------- catalog ---------------- */
+  .search{
+    display:flex;align-items:center;gap:7px;background:#0a0618;border:3px solid var(--line);
+    padding:7px 8px;margin:0 0 8px;
+  }
+  .search input{
+    background:transparent;border:0;outline:none;color:var(--text);font-family:var(--body);
+    font-size:16px;flex:1;min-width:0;letter-spacing:.3px;
+  }
+  .search input::placeholder{color:var(--dim)}
+  .chips{display:flex;gap:5px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none;margin:0 -1px}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{
+    border:2px solid var(--line);background:var(--bg2);color:var(--muted);
+    padding:4px 7px;font-family:var(--pixel);font-size:6px;cursor:pointer;
+    white-space:nowrap;flex:0 0 auto;letter-spacing:.3px;
+  }
+  .chip.is-active{background:var(--lime);border-color:var(--ink);color:var(--ink);box-shadow:2px 2px 0 #000}
+
+  .games{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding-bottom:6px}
+  .gameCard{appearance:none;border:0;background:transparent;padding:0;color:var(--text);font:inherit;text-align:left;cursor:pointer}
+  .cover{
+    position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--panel);
+    border:3px solid var(--ink);box-shadow:3px 3px 0 #000;
+  }
+  .cover svg{width:100%;height:100%;display:block;image-rendering:pixelated}
+  .cover .sysTag{
+    position:absolute;top:4px;left:4px;font-family:var(--pixel);font-size:5px;
+    letter-spacing:.5px;text-transform:uppercase;background:var(--ink);color:var(--cyan);
+    padding:3px 4px;border:1px solid var(--cyan);
+  }
+  .cover .saveTag{
+    position:absolute;top:4px;right:4px;width:15px;height:15px;display:grid;place-items:center;
+    background:var(--lime);border:2px solid var(--ink);color:var(--ink);
+    font-family:var(--pixel);font-size:6px;box-shadow:1px 1px 0 #000;
+  }
+  .gameCard .gname{font-family:var(--pixel);font-size:6.5px;margin-top:6px;line-height:1.6}
+  .gameCard .gsub{font-size:13px;color:var(--cyan);margin-top:2px;letter-spacing:.4px}
+  .gameCard:hover .cover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 #000}
+
+  /* ---------------- game sheet ---------------- */
+  .hero{position:relative;height:190px;border-bottom:3px solid #000;overflow:hidden;background:var(--panel)}
+  .hero svg{width:100%;height:100%;display:block;image-rendering:pixelated}
+  .hero .hBack{position:absolute;top:9px;left:9px;z-index:3}
+  .hero .heroTxt{position:absolute;left:10px;right:10px;bottom:9px;z-index:2}
+  .hero .heroTxt .sysTagBig{
+    display:inline-block;font-family:var(--pixel);font-size:6px;letter-spacing:1px;color:var(--ink);
+    background:var(--lime);padding:3px 5px;margin-bottom:6px;box-shadow:2px 2px 0 #000;
+  }
+  .hero h2{margin:0;font-family:var(--pixel);font-size:13px;line-height:1.5;text-shadow:3px 3px 0 #000;max-width:280px}
+  .hero .meta{font-size:14px;color:#e6ddff;margin-top:5px;text-shadow:2px 2px 0 #000}
+
+  .sheet{padding:11px 12px 18px}
+  .rating{display:flex;align-items:center;gap:7px;margin:3px 0 0}
+  .stars{font-family:var(--pixel);font-size:8px;color:var(--amber);letter-spacing:1px;text-shadow:1px 1px 0 #000}
+  .desc{font-size:16px;line-height:1.25;color:var(--muted);margin:8px 0 0}
+
+  .stateCard{border:3px solid var(--ink);background:var(--panel);padding:9px;margin-top:11px;box-shadow:4px 4px 0 #000}
+  .stateCard .scHead{display:flex;align-items:center;gap:6px;margin-bottom:8px}
+  .stateCard .scHead b{font-family:var(--pixel);font-size:7px}
+  .stateCard .scHead .pill{margin-left:auto}
+  .artifact{display:flex;align-items:center;gap:8px;padding:7px 0;border-top:2px dashed var(--line)}
+  .artifact:first-of-type{border-top:0}
+  .artifact .aIcon{
+    width:26px;height:26px;display:grid;place-items:center;border:2px solid var(--ink);
+    background:var(--panel3);color:var(--lime);font-family:var(--pixel);font-size:7px;flex:0 0 26px;
+  }
+  .artifact .aBody{flex:1;min-width:0}
+  .artifact .aBody b{display:block;font-size:15px;font-weight:400}
+  .artifact .aBody small{display:block;font-size:13px;color:var(--cyan);margin-top:1px}
+  .artifact .aAct{font-family:var(--pixel);font-size:6px;color:var(--lime)}
+
+  .compare{
+    display:flex;gap:8px;align-items:flex-start;margin-top:10px;padding:8px;
+    border:3px solid var(--line);background:#0a0618;
+  }
+  .compare p{margin:0;font-size:15px;line-height:1.2;color:var(--muted)}
+  .compare b{color:var(--cyan)}
+  .actions{display:flex;flex-direction:column;gap:7px;margin-top:11px}
+
+  /* ---------------- transfer ---------------- */
+  .transferHead{display:flex;align-items:center;gap:7px;margin:4px 0 14px}
+  .tEnd{flex:1;border:3px solid var(--ink);background:var(--panel);padding:8px;text-align:center;min-width:0;box-shadow:3px 3px 0 #000}
+  .tEnd b{display:block;font-family:var(--pixel);font-size:6.5px;margin-top:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .tEnd small{display:block;font-size:12px;color:var(--dim);margin-top:2px}
+  .arrowFlow{font-family:var(--pixel);font-size:12px;color:var(--lime);animation:nudge .8s steps(2) infinite}
+  @keyframes nudge{50%{transform:translateX(3px)}}
+
+  .progressWrap{margin:2px 0 5px}
+  .progressTop{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+  .progressTop b{font-family:var(--pixel);font-size:18px;color:var(--lime)}
+  .progressTop small{font-family:var(--pixel);font-size:6px;color:var(--dim)}
+  .progress{height:12px;background:#070412;border:3px solid var(--ink);padding:2px}
+  .progress .bar{
+    height:100%;width:0%;background:repeating-linear-gradient(90deg,var(--lime) 0 6px,#7ed13f 6px 10px);
+    transition:width .15s steps(3);
+  }
+  .steps{list-style:none;margin:14px 0 0;padding:0}
+  .steps li{display:flex;gap:8px;align-items:flex-start;padding:6px 0;font-size:15px;color:var(--dim)}
+  .steps li .n{
+    width:18px;height:18px;border:2px solid var(--line);display:grid;place-items:center;
+    font-family:var(--pixel);font-size:6px;color:var(--dim);flex:0 0 18px;background:#0a0618;
+  }
+  .steps li.active{color:var(--text)}
+  .steps li.active .n{border-color:var(--lime);color:var(--lime)}
+  .steps li.done{color:var(--muted)}
+  .steps li.done .n{background:var(--lime);border-color:var(--ink);color:var(--ink)}
+  .steps li small{display:block;font-size:12px;color:var(--dim);margin-top:1px}
+
+  .doneCard{border:3px solid var(--lime);background:rgba(168,255,96,.07);padding:11px;margin-top:13px;text-align:center;box-shadow:4px 4px 0 #000}
+  .doneCard .big{font-family:var(--pixel);font-size:22px;color:var(--lime);text-shadow:2px 2px 0 #000}
+  .doneCard b{display:block;font-family:var(--pixel);font-size:8px;margin-top:7px}
+  .doneCard small{display:block;font-size:13px;color:var(--cyan);margin-top:4px}
+
+  /* ---------------- controls ---------------- */
+  .consolePick{display:flex;gap:6px;margin:2px 0 12px}
+  .pick{
+    flex:1;border:3px solid var(--ink);background:var(--panel);color:var(--muted);
+    padding:7px 4px;font-family:var(--pixel);font-size:6px;cursor:pointer;box-shadow:3px 3px 0 #000;
+  }
+  .pick.is-active{background:var(--cyan);color:var(--ink);box-shadow:3px 3px 0 #000}
+  .pick:active{transform:translate(3px,3px);box-shadow:none}
+
+  .ctlCard{border:3px solid var(--ink);background:var(--panel);padding:10px;margin-bottom:10px;box-shadow:4px 4px 0 #000}
+  .ctlHead{display:flex;align-items:center;gap:8px;margin-bottom:9px}
+  .ctlHead b{font-family:var(--pixel);font-size:8px}
+  .ctlHead .val{margin-left:auto;font-family:var(--pixel);font-size:14px;color:var(--lime)}
+  .ctlRow{display:flex;gap:5px;margin-top:8px}
+  .pixBtn{
+    flex:1;border:3px solid var(--ink);background:var(--panel2);color:var(--text);
+    padding:6px 4px;font-family:var(--pixel);font-size:7px;cursor:pointer;box-shadow:3px 3px 0 #000;
+  }
+  .pixBtn:active{transform:translate(3px,3px);box-shadow:none}
+  .pixBtn.is-on{background:var(--red);color:var(--ink)}
+  .hint2{font-size:13px;color:var(--dim);margin:8px 0 0;letter-spacing:.3px}
+  .hint2.warn{color:var(--amber)}
+
+  .pixelRange{
+    -webkit-appearance:none;appearance:none;width:100%;height:24px;background:transparent;cursor:pointer;
+  }
+  .pixelRange::-webkit-slider-runnable-track{
+    height:12px;border:3px solid var(--ink);
+    background:linear-gradient(90deg,var(--lime) var(--fill,40%), #2a1f52 var(--fill,40%));
+  }
+  .pixelRange::-webkit-slider-thumb{
+    -webkit-appearance:none;width:16px;height:24px;margin-top:-9px;
+    background:var(--cyan);border:3px solid var(--ink);box-shadow:2px 2px 0 #000;
+  }
+  .pixelRange::-moz-range-track{height:12px;border:3px solid var(--ink);background:#2a1f52}
+  .pixelRange::-moz-range-progress{height:12px;background:var(--lime)}
+  .pixelRange::-moz-range-thumb{width:12px;height:18px;border-radius:0;background:var(--cyan);border:3px solid var(--ink)}
+
+  .batteryCard{display:flex;align-items:center;gap:10px;border:3px solid var(--ink);background:#0a0618;padding:10px;box-shadow:4px 4px 0 #000}
+  .batteryCard .bIcon{flex:0 0 44px;display:grid;place-items:center}
+  .batteryCard b{font-family:var(--pixel);font-size:7px;display:block}
+  .batteryCard small{display:block;font-size:13px;color:var(--cyan);margin-top:4px}
+  .batteryCard .pct{margin-left:auto;font-family:var(--pixel);font-size:14px;color:var(--lime)}
+
+  /* ---------------- history ---------------- */
+  .event{display:flex;gap:8px;padding:8px 0;border-bottom:2px dashed var(--line)}
+  .event .eIcon{width:28px;height:28px;flex:0 0 28px;border:2px solid var(--ink);background:var(--panel3);display:grid;place-items:center;font-family:var(--pixel);font-size:7px;color:var(--lime)}
+  .event .eBody{flex:1;min-width:0}
+  .event b{display:block;font-family:var(--pixel);font-size:6.5px;line-height:1.6}
+  .event small{display:block;font-size:13px;color:var(--dim);margin-top:2px}
+  .event .eRes{font-family:var(--pixel);font-size:6px;color:var(--lime)}
+  .event.err .eIcon{background:rgba(255,93,93,.15);color:var(--red)}
+  .event.err .eRes{color:var(--red)}
+
+  /* ---------------- settings ---------------- */
+  .setting{display:flex;align-items:center;gap:8px;padding:9px 0;border-bottom:2px dashed var(--line)}
+  .setting .sBody{flex:1}
+  .setting b{display:block;font-family:var(--pixel);font-size:6.5px;line-height:1.6}
+  .setting small{display:block;font-size:13px;color:var(--dim);margin-top:2px}
+  .switch{
+    width:38px;height:20px;border:3px solid var(--ink);background:#2a1f52;position:relative;
+    cursor:pointer;flex:0 0 38px;box-shadow:2px 2px 0 #000;
+  }
+  .switch::after{content:"";position:absolute;top:1px;left:1px;width:12px;height:12px;background:var(--dim)}
+  .switch.on{background:rgba(168,255,96,.2);border-color:var(--lime)}
+  .switch.on::after{left:19px;background:var(--lime)}
+  .kv{display:flex;justify-content:space-between;gap:8px;padding:6px 0;font-size:14px;border-bottom:1px solid #161030}
+  .kv span{color:var(--dim)}
+  .kv b{font-family:var(--pixel);font-size:6.5px;color:var(--text);text-align:right}
+
+  /* toast */
+  .toast{
+    position:absolute;left:50%;bottom:66px;transform:translate(-50%,10px);z-index:120;
+    background:var(--ink);border:3px solid var(--lime);color:var(--lime);
+    font-family:var(--pixel);font-size:6.5px;padding:8px 10px;white-space:nowrap;
+    opacity:0;transition:.18s steps(2);pointer-events:none;box-shadow:3px 3px 0 #000;
+  }
+  .toast.show{opacity:1;transform:translate(-50%,0)}
+
+  /* ---------------- notes ---------------- */
+  .notes{width:245px;flex:0 0 245px;padding-top:46px}
+  .noteCard{border:3px solid var(--line);background:var(--bg2);padding:11px;margin-bottom:10px;box-shadow:4px 4px 0 #000}
+  .noteCard h4{margin:0 0 7px;font-family:var(--pixel);font-size:6.5px;color:var(--amber);letter-spacing:.5px}
+  .noteCard p{margin:0;font-size:15px;line-height:1.25;color:var(--muted)}
+  .noteCard p + p{margin-top:6px}
+  .noteCard b{color:var(--text);font-weight:400}
+  .noteCard code{font-size:6px}
+
+  @media (max-width:1080px){ .notes{display:none} }
+  @media (max-width:860px){
+    body{padding:10px}
+    .stage{gap:14px}
+    .rail{width:196px;flex-basis:196px}
+    .phone{width:346px;height:clamp(560px,calc(100vh - 36px),720px)}
+    .railNote{display:none}
+  }
+  @media (max-width:640px){
+    body{display:block;padding:0}
+    .rail{width:100%;flex:none;display:flex;gap:6px;overflow-x:auto;padding:10px;border-bottom:3px solid #000;background:var(--bg);position:sticky;top:0;z-index:80}
+    .brand{margin:0 8px 0 0;flex:0 0 auto}
+    .brand p{display:none}
+    .screens{flex-direction:row;gap:4px}
+    .railBtn{white-space:nowrap;padding:6px 8px;font-size:15px}
+    .railBtn span{display:none}
+    .phoneWrap{margin:16px auto;display:flex;justify-content:center}
+    .phone{width:340px;height:clamp(560px,calc(100vh - 40px),700px)}
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+
+  <!-- ============ RAIL ============ -->
+  <aside class="rail">
+    <div class="brand">
+      <div class="logo"><img src="assets/icon3.png" alt="MULTIRK"></div>
+      <div>
+        <h1>MULTIRK</h1>
+        <p>SYNC AGENT · v0.1</p>
+      </div>
+    </div>
+
+    <nav class="screens">
+      <button class="railBtn is-active" data-go="discover"><span>01</span>DESCUBRIR</button>
+      <button class="railBtn" data-go="pair"><span>02</span>EMPAREJAR</button>
+      <button class="railBtn" data-go="home"><span>03</span>CONSOLAS</button>
+      <button class="railBtn" data-go="catalog"><span>04</span>CATÁLOGO</button>
+      <button class="railBtn" data-go="game"><span>05</span>JUEGO</button>
+      <button class="railBtn" data-go="transfer"><span>06</span>TRANSFERIR</button>
+      <button class="railBtn" data-go="controls"><span>07</span>CONTROLES</button>
+      <button class="railBtn" data-go="history"><span>08</span>HISTORIAL</button>
+      <button class="railBtn" data-go="settings"><span>09</span>AJUSTES</button>
+    </nav>
+
+    <div class="railNote">
+      <strong>PROTOCOLO</strong>
+      <ul>
+        <li>UDP multicast → descubrir.</li>
+        <li>TCP frames de 16 B → todo lo demás.</li>
+        <li>Sin HTTP en la ruta crítica.</li>
+        <li>SD: solo se escribe al sincronizar.</li>
+      </ul>
+    </div>
+  </aside>
+
+  <!-- ============ PHONE ============ -->
+  <div class="phoneWrap">
+    <div class="phone">
+      <div class="phoneScreen">
+        <div class="statusbar">
+          <span>21:14</span>
+          <span class="right">
+            <img class="ico12" src="assets/icons/wifi.png" alt="WiFi">
+            <img class="ico12" src="assets/icons/battery.png" alt="Batería">
+          </span>
+        </div>
+
+        <div class="viewport">
+
+          <!-- ---------- 01 DESCUBRIR ---------- -->
+          <section class="screen is-active" data-screen="discover">
+            <div class="appbar">
+              <div>
+                <p class="kicker">SCAN</p>
+                <h2>BUSCAR CONSOLAS</h2>
+              </div>
+              <div class="grow"></div>
+              <button class="iconBtn" title="Añadir por IP">+</button>
+            </div>
+            <div class="content">
+              <div class="radar" id="radar">
+                <span class="ring r1"></span>
+                <span class="ring r2"></span>
+                <span class="ring r3"></span>
+                <div class="radarCore">
+                  <img class="ico32" src="assets/icons/gamepad.png" alt="Consola">
+                </div>
+              </div>
+              <p class="lead" id="discoverLead">Misma red WiFi · multicast 239.255.42.99</p>
+              <button class="btn btn-primary" id="scanBtn">BUSCAR EN LA RED</button>
+
+              <div id="foundWrap" class="hidden">
+                <p class="sectionLabel">2 CONSOLAS ENCONTRADAS</p>
+
+                <button class="device" data-go="pair">
+                  <span class="dIcon">
+                    <svg width="22" height="16" viewBox="0 0 22 16"><g fill="#ffc94a"><rect x="1" y="4" width="20" height="8"/><rect x="0" y="6" width="22" height="4"/><rect x="4" y="6" width="3" height="3" fill="#0a0716"/><rect x="15" y="6" width="3" height="3" fill="#0a0716"/></g></svg>
+                  </span>
+                  <span class="dBody">
+                    <strong>RG351V · SALA</strong>
+                    <small>192.168.1.42 · 4.218 juegos</small>
+                  </span>
+                  <span class="pill lime"><i class="dot"></i>OK</span>
+                  <span class="chev">&gt;</span>
+                </button>
+
+                <button class="device" data-go="pair">
+                  <span class="dIcon">
+                    <svg width="22" height="16" viewBox="0 0 22 16"><g fill="#5ce1e6"><rect x="1" y="4" width="20" height="8"/><rect x="0" y="6" width="22" height="4"/><rect x="4" y="6" width="3" height="3" fill="#0a0716"/><rect x="15" y="6" width="3" height="3" fill="#0a0716"/></g></svg>
+                  </span>
+                  <span class="dBody">
+                    <strong>RG351P · CUARTO</strong>
+                    <small>192.168.1.57 · 3.902 juegos</small>
+                  </span>
+                  <span class="pill cyan">NUEVA</span>
+                  <span class="chev">&gt;</span>
+                </button>
+              </div>
+
+              <p class="footnote">Si el router aísla clientes (AP isolation), añade la consola por IP. El puerto TCP es <code>47820</code>.</p>
+            </div>
+          </section>
+
+          <!-- ---------- 02 EMPAREJAR ---------- -->
+          <section class="screen" data-screen="pair">
+            <div class="appbar">
+              <button class="back" data-go="discover">&lt;</button>
+              <h2>EMPAREJAR</h2>
+              <div class="grow"></div>
+              <span class="pill cyan">UDP</span>
+            </div>
+            <div class="content center">
+              <div class="pairArt">
+                <img class="ico32" src="assets/icons/gamepad.png" alt="Consola">
+              </div>
+              <h3 style="margin:0;font-family:var(--pixel);font-size:9px">RG351V · SALA</h3>
+              <p class="muted" style="font-size:14px;margin:6px 0 0">192.168.1.42 · multirkd 0.1</p>
+
+              <div class="pin" id="pinDots">
+                <span></span><span></span><span></span><span></span><span></span><span></span>
+              </div>
+              <p class="pinErr hidden" id="pinErr">PIN INCORRECTO</p>
+              <p class="hint">DEMO PIN: 482913</p>
+
+              <div class="keypad" id="keypad">
+                <button data-key="1">1</button><button data-key="2">2</button><button data-key="3">3</button>
+                <button data-key="4">4</button><button data-key="5">5</button><button data-key="6">6</button>
+                <button data-key="7">7</button><button data-key="8">8</button><button data-key="9">9</button>
+                <button data-key="del">DEL</button><button data-key="0">0</button><button data-key="ok">OK</button>
+              </div>
+
+              <button class="btn btn-primary" id="pairBtn" disabled>EMPAREJAR</button>
+
+              <p class="footnote" style="text-align:center">PIN en <code>/home/ark/.config/multirk/pin.txt</code><br>o por SSH en el log del servicio.</p>
+            </div>
+          </section>
+
+          <!-- ---------- 03 CONSOLAS ---------- -->
+          <section class="screen" data-screen="home">
+            <div class="appbar">
+              <div>
+                <p class="kicker">ONLINE</p>
+                <h2>CONSOLAS</h2>
+              </div>
+              <div class="grow"></div>
+              <button class="iconBtn" data-go="discover">R</button>
+            </div>
+            <div class="content">
+
+              <div class="console">
+                <div class="top">
+                  <div class="avatar">
+                    <svg width="22" height="16" viewBox="0 0 22 16"><g fill="#ffc94a"><rect x="1" y="4" width="20" height="8"/><rect x="0" y="6" width="22" height="4"/><rect x="4" y="6" width="3" height="3" fill="#0a0716"/><rect x="15" y="6" width="3" height="3" fill="#0a0716"/></g></svg>
+                  </div>
+                  <div style="flex:1;min-width:0">
+                    <h3>RG351V · SALA</h3>
+                    <div class="ip">192.168.1.42 · 5 GHz</div>
+                  </div>
+                  <span class="pill lime"><i class="dot"></i>ON</span>
+                </div>
+                <div class="stats">
+                  <div class="stat"><b>16</b><small>SISTEMAS</small></div>
+                  <div class="stat"><b>4218</b><small>JUEGOS</small></div>
+                  <div class="stat"><b>1480</b><small>SAVES</small></div>
+                </div>
+                <button class="btn btn-ghost" style="width:100%" data-go="catalog">ABRIR CATÁLOGO</button>
+              </div>
+
+              <div class="console">
+                <div class="top">
+                  <div class="avatar">
+                    <svg width="22" height="16" viewBox="0 0 22 16"><g fill="#5ce1e6"><rect x="1" y="4" width="20" height="8"/><rect x="0" y="6" width="22" height="4"/><rect x="4" y="6" width="3" height="3" fill="#0a0716"/><rect x="15" y="6" width="3" height="3" fill="#0a0716"/></g></svg>
+                  </div>
+                  <div style="flex:1;min-width:0">
+                    <h3>RG351P · CUARTO</h3>
+                    <div class="ip">192.168.1.57 · 2.4 GHz</div>
+                  </div>
+                  <span class="pill lime"><i class="dot"></i>ON</span>
+                </div>
+                <div class="stats">
+                  <div class="stat"><b>14</b><small>SISTEMAS</small></div>
+                  <div class="stat"><b>3902</b><small>JUEGOS</small></div>
+                  <div class="stat"><b>1205</b><small>SAVES</small></div>
+                </div>
+                <button class="btn btn-ghost" style="width:100%" data-go="catalog">ABRIR CATÁLOGO</button>
+              </div>
+
+              <div class="banner">
+                <span style="font-family:var(--pixel);font-size:11px;color:var(--amber)">!</span>
+                <p><b>1 SAVE PENDIENTE</b><br>Chrono Trigger se jugó en RG351P hace 2 días.</p>
+              </div>
+
+              <p class="sectionLabel">ÚLTIMOS ENVÍOS</p>
+              <div class="event">
+                <div class="eIcon">UP</div>
+                <div class="eBody"><b>SUPER MARIO WORLD</b><small>V → P · auto · 1,2 MB</small></div>
+                <span class="eRes">OK</span>
+              </div>
+              <div class="event">
+                <div class="eIcon">DN</div>
+                <div class="eBody"><b>METROID FUSION</b><small>P → V · sram · 32 KB</small></div>
+                <span class="eRes">OK</span>
+              </div>
+
+              <p class="footnote">El catálogo vive en Room; la SD solo se toca al escanear o al guardar.</p>
+            </div>
+          </section>
+
+          <!-- ---------- 04 CATÁLOGO ---------- -->
+          <section class="screen" data-screen="catalog">
+            <div class="appbar">
+              <button class="back" data-go="home">&lt;</button>
+              <div style="min-width:0">
+                <h2>CATÁLOGO</h2>
+                <p class="muted" style="font-size:13px;margin:3px 0 0">RG351V · 4218 JUEGOS</p>
+              </div>
+              <div class="grow"></div>
+              <button class="iconBtn" data-go="settings">S</button>
+            </div>
+            <div class="content">
+              <div class="search">
+                <img class="ico14" src="assets/icons/search.png" alt="Buscar">
+                <input id="gameSearch" placeholder="BUSCAR JUEGO O ARCHIVO...">
+              </div>
+
+              <div class="chips" id="catalogChips">
+                <button class="chip is-active" data-filter="all">TODOS</button>
+                <button class="chip" data-filter="state">CON SAVE</button>
+                <button class="chip" data-filter="snes">SNES</button>
+                <button class="chip" data-filter="psx">PSX</button>
+                <button class="chip" data-filter="gba">GBA</button>
+                <button class="chip" data-filter="genesis">GENESIS</button>
+              </div>
+
+              <div class="games" id="gamesGrid">
+
+                <button class="gameCard" data-go="game" data-name="super mario world" data-system="snes" data-state="1">
+                  <div class="cover">
+                    <svg viewBox="0 0 60 80" shape-rendering="crispEdges">
+                      <rect width="60" height="80" fill="#4aa3e0"/>
+                      <rect y="58" width="60" height="22" fill="#3a9a55"/>
+                      <rect y="58" width="60" height="4" fill="#2f7a44"/>
+                      <g fill="#ffffff"><rect x="5" y="11" width="15" height="5"/><rect x="9" y="7" width="8" height="4"/><rect x="41" y="20" width="13" height="5"/><rect x="45" y="16" width="6" height="4"/></g>
+                      <g><rect x="40" y="38" width="14" height="14" fill="#f2b134"/><rect x="40" y="38" width="14" height="3" fill="#c98a1b"/><rect x="45" y="43" width="4" height="4" fill="#8a5a00"/></g>
+                      <g><rect x="34" y="31" width="8" height="4" fill="#8a5a00"/><rect x="32" y="30" width="3" height="6" fill="#8a5a00"/></g>
+                      <g>
+                        <rect x="11" y="30" width="14" height="4" fill="#e63946"/>
+                        <rect x="9" y="34" width="18" height="3" fill="#e63946"/>
+                        <rect x="11" y="37" width="14" height="6" fill="#f2c9a0"/>
+                        <rect x="11" y="37" width="3" height="4" fill="#5a2d0c"/>
+                        <rect x="18" y="39" width="2" height="2" fill="#1a1a1a"/>
+                        <rect x="22" y="39" width="2" height="2" fill="#1a1a1a"/>
+                        <rect x="13" y="43" width="10" height="3" fill="#5a2d0c"/>
+                        <rect x="11" y="46" width="14" height="9" fill="#2b6cb0"/>
+                        <rect x="14" y="49" width="8" height="3" fill="#f2c9a0"/>
+                        <rect x="9" y="47" width="4" height="6" fill="#f2c9a0"/>
+                        <rect x="24" y="47" width="4" height="6" fill="#f2c9a0"/>
+                        <rect x="11" y="55" width="5" height="5" fill="#5a2d0c"/>
+                        <rect x="20" y="55" width="5" height="5" fill="#5a2d0c"/>
+                      </g>
+                      <g fill="#c96a2b"><rect x="4" y="66" width="12" height="8"/><rect x="18" y="66" width="12" height="8"/><rect x="32" y="66" width="12" height="8"/><rect x="46" y="66" width="12" height="8"/></g>
+                      <g fill="#8f4a1c"><rect x="4" y="72" width="12" height="2"/><rect x="18" y="72" width="12" height="2"/><rect x="32" y="72" width="12" height="2"/><rect x="46" y="72" width="12" height="2"/></g>
+                    </svg>
+                    <span class="sysTag">SNES</span><span class="saveTag">S</span>
+                  </div>
+                  <div class="gname">SUPER MARIO WORLD</div>
+                  <div class="gsub">SNES · 512 KB</div>
+                </button>
+
+                <button class="gameCard" data-go="game" data-name="castlevania sotn" data-system="psx" data-state="1">
+                  <div class="cover">
+                    <svg viewBox="0 0 60 80" shape-rendering="crispEdges">
+                      <rect width="60" height="80" fill="#241033"/>
+                      <rect y="52" width="60" height="28" fill="#160922"/>
+                      <g fill="#f4e6a1"><rect x="36" y="8" width="16" height="16"/><rect x="38" y="6" width="12" height="20"/><rect x="34" y="10" width="20" height="12"/><rect x="40" y="14" width="4" height="4" fill="#d8c98a"/></g>
+                      <g fill="#0b0414">
+                        <rect x="2" y="34" width="10" height="34"/>
+                        <rect x="0" y="30" width="14" height="6"/>
+                        <rect x="3" y="26" width="3" height="6"/>
+                        <rect x="9" y="24" width="3" height="8"/>
+                        <rect x="12" y="38" width="12" height="30"/>
+                        <rect x="24" y="44" width="10" height="24"/>
+                        <rect x="34" y="34" width="8" height="34"/>
+                        <rect x="42" y="40" width="12" height="28"/>
+                        <rect x="48" y="30" width="4" height="12"/>
+                      </g>
+                      <g fill="#ffc94a">
+                        <rect x="5" y="40" width="2" height="4"/><rect x="5" y="50" width="2" height="4"/>
+                        <rect x="16" y="44" width="2" height="4"/><rect x="16" y="54" width="2" height="4"/>
+                        <rect x="46" y="46" width="2" height="4"/>
+                      </g>
+                      <g fill="#ff6bb5"><rect x="30" y="18" width="2" height="2"/><rect x="22" y="12" width="2" height="2"/><rect x="12" y="16" width="2" height="2"/></g>
+                      <g fill="#5ce1e6"><rect x="27" y="60" width="6" height="2"/><rect x="25" y="62" width="10" height="2"/><rect x="23" y="64" width="14" height="2"/></g>
+                    </svg>
+                    <span class="sysTag">PSX</span><span class="saveTag">S</span>
+                  </div>
+                  <div class="gname">CASTLEVANIA: SOTN</div>
+                  <div class="gsub">PSX · 631 MB</div>
+                </button>
+
+                <button class="gameCard" data-go="game" data-name="metroid fusion" data-system="gba" data-state="0">
+                  <div class="cover">
+                    <svg viewBox="0 0 60 80" shape-rendering="crispEdges">
+                      <rect width="60" height="80" fill="#0b2a2b"/>
+                      <g fill="#134a46"><rect x="0" y="58" width="60" height="22"/><rect x="4" y="50" width="12" height="8"/><rect x="44" y="48" width="14" height="10"/></g>
+                      <g fill="#1d6b63"><rect x="0" y="8" width="8" height="30"/><rect x="52" y="10" width="8" height="34"/><rect x="8" y="0" width="10" height="12"/></g>
+                      <g>
+                        <rect x="18" y="30" width="24" height="6" fill="#ff8c42"/>
+                        <rect x="14" y="36" width="32" height="16" fill="#ff8c42"/>
+                        <rect x="20" y="36" width="20" height="6" fill="#ffc94a"/>
+                        <rect x="30" y="38" width="13" height="6" fill="#5ce1e6"/>
+                        <rect x="36" y="39" width="6" height="4" fill="#0b2a2b"/>
+                        <rect x="20" y="52" width="8" height="12" fill="#ff8c42"/>
+                        <rect x="34" y="52" width="8" height="12" fill="#ff8c42"/>
+                        <rect x="20" y="64" width="8" height="4" fill="#ffc94a"/>
+                        <rect x="34" y="64" width="8" height="4" fill="#ffc94a"/>
+                        <rect x="10" y="40" width="6" height="10" fill="#ff8c42"/>
+                        <rect x="44" y="40" width="6" height="10" fill="#ff8c42"/>
+                      </g>
+                      <g fill="#a8ff60"><rect x="14" y="26" width="3" height="3"/><rect x="44" y="24" width="3" height="3"/><rect x="8" y="34" width="2" height="2"/></g>
+                    </svg>
+                    <span class="sysTag">GBA</span>
+                  </div>
+                  <div class="gname">METROID FUSION</div>
+                  <div class="gsub">GBA · 8 MB</div>
+                </button>
+
+                <button class="gameCard" data-go="game" data-name="chrono trigger" data-system="snes" data-state="1">
+                  <div class="cover">
+                    <svg viewBox="0 0 60 80" shape-rendering="crispEdges">
+                      <rect width="60" height="80" fill="#3a1f0b"/>
+                      <g fill="#7a4a12"><rect x="0" y="60" width="60" height="20"/><rect x="0" y="52" width="60" height="8"/></g>
+                      <g fill="#ffc94a">
+                        <rect x="18" y="16" width="24" height="24"/>
+                        <rect x="14" y="20" width="32" height="16"/>
+                        <rect x="22" y="12" width="16" height="32"/>
+                      </g>
+                      <g fill="#3a1f0b">
+                        <rect x="28" y="18" width="4" height="8"/>
+                        <rect x="28" y="30" width="4" height="6"/>
+                        <rect x="18" y="26" width="8" height="4"/>
+                        <rect x="34" y="26" width="8" height="4"/>
+                      </g>
+                      <g fill="#ff6bb5"><rect x="10" y="20" width="4" height="4"/><rect x="46" y="20" width="4" height="4"/></g>
+                      <g fill="#5ce1e6"><rect x="20" y="46" width="20" height="4"/><rect x="16" y="50" width="28" height="3"/></g>
+                      <g fill="#2b1406"><rect x="4" y="64" width="10" height="16"/><rect x="46" y="62" width="10" height="18"/></g>
+                    </svg>
+                    <span class="sysTag">SNES</span><span class="saveTag">S</span>
+                  </div>
+                  <div class="gname">CHRONO TRIGGER</div>
+                  <div class="gsub">SNES · 4 MB</div>
+                </button>
+
+                <button class="gameCard" data-go="game" data-name="crash bandicoot" data-system="psx" data-state="0">
+                  <div class="cover">
+                    <svg viewBox="0 0 60 80" shape-rendering="crispEdges">
+                      <rect width="60" height="80" fill="#ff8c42"/>
+                      <rect y="30" width="60" height="18" fill="#ffc94a"/>
+                      <rect y="46" width="60" height="34" fill="#7a3b12"/>
+                      <g fill="#3a1f0b"><rect x="0" y="54" width="14" height="26"/><rect x="18" y="58" width="10" height="22"/><rect x="44" y="52" width="16" height="28"/></g>
+                      <g fill="#2b1406"><rect x="4" y="56" width="4" height="24"/><rect x="48" y="54" width="4" height="26"/></g>
+                      <g>
+                        <rect x="22" y="30" width="16" height="10" fill="#c96a2b"/>
+                        <rect x="20" y="40" width="20" height="14" fill="#c96a2b"/>
+                        <rect x="24" y="34" width="5" height="4" fill="#0b0414"/>
+                        <rect x="32" y="34" width="5" height="4" fill="#0b0414"/>
+                        <rect x="26" y="42" width="8" height="3" fill="#ffd9a8"/>
+                      </g>
+                      <g fill="#a8ff60"><rect x="8" y="44" width="6" height="4"/><rect x="44" y="40" width="6" height="4"/></g>
+                    </svg>
+                    <span class="sysTag">PSX</span>
+                  </div>
+                  <div class="gname">CRASH BANDICOOT</div>
+                  <div class="gsub">PSX · 289 MB</div>
+                </button>
+
+                <button class="gameCard" data-go="game" data-name="pokemon emerald" data-system="gba" data-state="1">
+                  <div class="cover">
+                    <svg viewBox="0 0 60 80" shape-rendering="crispEdges">
+                      <rect width="60" height="80" fill="#2f8f6a"/>
+                      <g fill="#1d6b4f"><rect y="52" width="60" height="28"/><rect x="0" y="44" width="20" height="8"/><rect x="40" y="40" width="20" height="12"/></g>
+                      <g fill="#a8ff60"><rect x="6" y="56" width="4" height="8"/><rect x="48" y="50" width="4" height="10"/><rect x="26" y="62" width="4" height="6"/></g>
+                      <g>
+                        <rect x="22" y="22" width="16" height="20" fill="#ff5d5d"/>
+                        <rect x="18" y="26" width="24" height="12" fill="#ff5d5d"/>
+                        <rect x="22" y="42" width="16" height="4" fill="#f2ecff"/>
+                        <rect x="26" y="46" width="8" height="4" fill="#f2ecff"/>
+                        <rect x="24" y="30" width="4" height="4" fill="#f2ecff"/>
+                        <rect x="32" y="30" width="4" height="4" fill="#f2ecff"/>
+                      </g>
+                      <g fill="#ffc94a"><rect x="12" y="12" width="3" height="3"/><rect x="46" y="16" width="3" height="3"/><rect x="40" y="8" width="2" height="2"/></g>
+                    </svg>
+                    <span class="sysTag">GBA</span><span class="saveTag">S</span>
+                  </div>
+                  <div class="gname">POKÉMON EMERALD</div>
+                  <div class="gsub">GBA · 16 MB</div>
+                </button>
+
+              </div>
+
+              <p class="footnote">Toca un juego para ver sus estados en cada consola.</p>
+            </div>
+          </section>
+
+          <!-- ---------- 05 JUEGO ---------- -->
+          <section class="screen" data-screen="game">
+            <div class="content flush">
+              <div class="hero">
+                <svg viewBox="0 0 60 80" preserveAspectRatio="xMidYMid slice" shape-rendering="crispEdges">
+                  <rect width="60" height="80" fill="#4aa3e0"/>
+                  <rect y="58" width="60" height="22" fill="#3a9a55"/>
+                  <rect y="58" width="60" height="4" fill="#2f7a44"/>
+                  <g fill="#ffffff"><rect x="5" y="11" width="15" height="5"/><rect x="9" y="7" width="8" height="4"/><rect x="41" y="20" width="13" height="5"/><rect x="45" y="16" width="6" height="4"/></g>
+                  <g><rect x="40" y="38" width="14" height="14" fill="#f2b134"/><rect x="40" y="38" width="14" height="3" fill="#c98a1b"/><rect x="45" y="43" width="4" height="4" fill="#8a5a00"/></g>
+                  <g>
+                    <rect x="11" y="30" width="14" height="4" fill="#e63946"/>
+                    <rect x="9" y="34" width="18" height="3" fill="#e63946"/>
+                    <rect x="11" y="37" width="14" height="6" fill="#f2c9a0"/>
+                    <rect x="11" y="37" width="3" height="4" fill="#5a2d0c"/>
+                    <rect x="18" y="39" width="2" height="2" fill="#1a1a1a"/>
+                    <rect x="22" y="39" width="2" height="2" fill="#1a1a1a"/>
+                    <rect x="13" y="43" width="10" height="3" fill="#5a2d0c"/>
+                    <rect x="11" y="46" width="14" height="9" fill="#2b6cb0"/>
+                    <rect x="14" y="49" width="8" height="3" fill="#f2c9a0"/>
+                    <rect x="9" y="47" width="4" height="6" fill="#f2c9a0"/>
+                    <rect x="24" y="47" width="4" height="6" fill="#f2c9a0"/>
+                    <rect x="11" y="55" width="5" height="5" fill="#5a2d0c"/>
+                    <rect x="20" y="55" width="5" height="5" fill="#5a2d0c"/>
+                  </g>
+                  <g fill="#c96a2b"><rect x="4" y="66" width="12" height="8"/><rect x="18" y="66" width="12" height="8"/><rect x="32" y="66" width="12" height="8"/><rect x="46" y="66" width="12" height="8"/></g>
+                </svg>
+                <button class="back hBack" data-go="catalog">&lt;</button>
+                <div class="heroTxt">
+                  <div class="sysTagBig">SUPER NINTENDO · USA</div>
+                  <h2>SUPER MARIO WORLD</h2>
+                  <div class="meta">512 KB · .sfc · 2 JUGADORES</div>
+                </div>
+              </div>
+
+              <div class="sheet">
+                <div class="rating">
+                  <span class="stars">*****</span>
+                  <span class="dim" style="font-size:13px">4.8</span>
+                  <span class="pill" style="margin-left:auto">1P</span>
+                </div>
+                <p class="desc">Mario y Yoshi recorren Dinosaur Land para rescatar a la Princesa Peach. Guardado automático de RetroArch activo.</p>
+
+                <div class="stateCard">
+                  <div class="scHead">
+                    <b>SAVES EN RG351V</b>
+                    <span class="pill lime"><i class="dot"></i>3 FILES</span>
+                  </div>
+                  <div class="artifact">
+                    <div class="aIcon">A</div>
+                    <div class="aBody"><b>Auto · al salir</b><small>HOY 21:14 · 1,2 MB</small></div>
+                    <span class="aAct">ENVIAR</span>
+                  </div>
+                  <div class="artifact">
+                    <div class="aIcon">2</div>
+                    <div class="aBody"><b>Slot 2</b><small>AYER 22:03 · 1,2 MB</small></div>
+                    <span class="aAct">ENVIAR</span>
+                  </div>
+                  <div class="artifact">
+                    <div class="aIcon">S</div>
+                    <div class="aBody"><b>SRAM · batería</b><small>HOY 21:12 · 8 KB</small></div>
+                    <span class="aAct">ENVIAR</span>
+                  </div>
+                </div>
+
+                <div class="compare">
+                  <span style="font-family:var(--pixel);font-size:9px;color:var(--cyan)">&lt;&gt;</span>
+                  <p><b>RG351P:</b> sin estado para este juego.<br>Se creará al enviarlo.</p>
+                </div>
+
+                <div class="actions">
+                  <button class="btn btn-primary" data-go="transfer" id="sendBtn">ENVIAR A RG351P</button>
+                  <button class="btn btn-ghost">DESCARGAR AL TELÉFONO</button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ---------- 06 TRANSFERENCIA ---------- -->
+          <section class="screen" data-screen="transfer">
+            <div class="appbar">
+              <button class="back" data-go="game">&lt;</button>
+              <h2>SYNC</h2>
+              <div class="grow"></div>
+              <span class="pill lime" id="linkPill"><i class="dot"></i>TCP</span>
+            </div>
+            <div class="content">
+              <div class="transferHead">
+                <div class="tEnd">
+                  <svg width="26" height="18" viewBox="0 0 22 16" style="margin:0 auto"><g fill="#ffc94a"><rect x="1" y="4" width="20" height="8"/><rect x="0" y="6" width="22" height="4"/></g></svg>
+                  <b>RG351V</b><small>origen</small>
+                </div>
+                <div class="arrowFlow">&gt;&gt;</div>
+                <div class="tEnd">
+                  <svg width="26" height="18" viewBox="0 0 22 16" style="margin:0 auto"><g fill="#5ce1e6"><rect x="1" y="4" width="20" height="8"/><rect x="0" y="6" width="22" height="4"/></g></svg>
+                  <b>RG351P</b><small>destino</small>
+                </div>
+              </div>
+
+              <div class="progressWrap">
+                <div class="progressTop"><b id="pct">0%</b><small id="bytesLabel">0,0 / 1,2 MB</small></div>
+                <div class="progress"><div class="bar" id="bar"></div></div>
+              </div>
+
+              <ul class="steps" id="steps">
+                <li data-at="0"><span class="n">1</span><span><b>HELLO</b><small>frame 16 B · token</small></span></li>
+                <li data-at="8"><span class="n">2</span><span><b>GET opcode 7</b><small>state.auto · chunks 256 KB</small></span></li>
+                <li data-at="52"><span class="n">3</span><span><b>SHA-256</b><small>verificado en RAM</small></span></li>
+                <li data-at="66"><span class="n">4</span><span><b>PUT opcode 10</b><small>spool → rename atómico</small></span></li>
+              </ul>
+
+              <div class="doneCard hidden" id="doneCard">
+                <div class="big">OK</div>
+                <b>SAVE SINCRONIZADO</b>
+                <small>slot auto · 1,2 MB · 1,9 s</small>
+                <div style="display:flex;gap:6px;margin-top:10px">
+                  <button class="btn btn-ghost" style="flex:1" data-go="game">FICHA</button>
+                  <button class="btn btn-primary" style="flex:1" data-go="history">HISTORIAL</button>
+                </div>
+              </div>
+
+              <p class="footnote" id="transferNote">La copia anterior se guarda como <code>.multirk.bak</code>.</p>
+            </div>
+          </section>
+
+          <!-- ---------- 07 CONTROLES ---------- -->
+          <section class="screen" data-screen="controls">
+            <div class="appbar">
+              <div>
+                <p class="kicker">HARDWARE</p>
+                <h2>CONTROLES</h2>
+              </div>
+              <div class="grow"></div>
+              <span class="pill cyan" id="ctlTarget">RG351V</span>
+            </div>
+            <div class="content">
+              <div class="consolePick" id="consolePick">
+                <button class="pick is-active" data-ctl="RG351V · Sala">RG351V</button>
+                <button class="pick" data-ctl="RG351P · Cuarto">RG351P</button>
+              </div>
+
+              <div class="ctlCard">
+                <div class="ctlHead">
+                  <img class="ico20" src="assets/icons/volume.png" alt="Volumen">
+                  <b>VOLUMEN</b>
+                  <span class="val" id="volVal">42%</span>
+                </div>
+                <input type="range" class="pixelRange" id="volRange" min="0" max="100" value="42">
+                <div class="ctlRow">
+                  <button class="pixBtn" data-vol="-5">-5</button>
+                  <button class="pixBtn" data-vol="5">+5</button>
+                  <button class="pixBtn" id="muteBtn">MUTE</button>
+                </div>
+                <p class="hint2">amixer · control detectado: Playback</p>
+              </div>
+
+              <div class="ctlCard">
+                <div class="ctlHead">
+                  <img class="ico20" src="assets/icons/brightness.png" alt="Brillo">
+                  <b>BRILLO</b>
+                  <span class="val" id="briVal" style="color:var(--amber)">70%</span>
+                </div>
+                <input type="range" class="pixelRange" id="briRange" min="5" max="100" value="70">
+                <div class="ctlRow">
+                  <button class="pixBtn" data-bri="-5">-5</button>
+                  <button class="pixBtn" data-bri="5">+5</button>
+                  <button class="pixBtn" id="dimBtn">BAJO</button>
+                </div>
+                <p class="hint2 warn">sysfs: requiere grupo video o brightnessctl</p>
+              </div>
+
+              <div class="batteryCard">
+                <div class="bIcon">
+                  <img class="ico40" src="assets/icons/battery.png" alt="Batería">
+                </div>
+                <div><b>BATERÍA</b><small>RG351V · descargando</small></div>
+                <span class="pct">82%</span>
+              </div>
+
+              <p class="footnote">Los cambios van por TCP opcode 16 y la consola responde con el estado real. Nada de HTTP.</p>
+            </div>
+          </section>
+
+          <!-- ---------- 08 HISTORIAL ---------- -->
+          <section class="screen" data-screen="history">
+            <div class="appbar">
+              <div>
+                <p class="kicker">LOG</p>
+                <h2>HISTORIAL</h2>
+              </div>
+              <div class="grow"></div>
+              <span class="pill">HOY</span>
+            </div>
+            <div class="content">
+              <div class="event">
+                <div class="eIcon">UP</div>
+                <div class="eBody"><b>SUPER MARIO WORLD · AUTO</b><small>21:14 · V → P · 1,2 MB</small></div>
+                <span class="eRes">OK</span>
+              </div>
+              <div class="event">
+                <div class="eIcon">DN</div>
+                <div class="eBody"><b>METROID FUSION · SRAM</b><small>20:02 · P → V · 32 KB</small></div>
+                <span class="eRes">OK</span>
+              </div>
+              <div class="event err">
+                <div class="eIcon">!</div>
+                <div class="eBody"><b>CASTLEVANIA: SOTN · SLOT 2</b><small>19:47 · conflicto: destino más reciente</small></div>
+                <span class="eRes">CONFLICTO</span>
+              </div>
+              <div class="event">
+                <div class="eIcon">CT</div>
+                <div class="eBody"><b>VOLUMEN · 42%</b><small>19:30 · RG351V · opcode 16</small></div>
+                <span class="eRes">OK</span>
+              </div>
+              <div class="event">
+                <div class="eIcon">UP</div>
+                <div class="eBody"><b>POKÉMON EMERALD · SRAM</b><small>AYER 23:11 · V → P · 128 KB</small></div>
+                <span class="eRes">OK</span>
+              </div>
+
+              <p class="footnote">El historial vive en Room. La consola no guarda logs en la SD.</p>
+            </div>
+          </section>
+
+          <!-- ---------- 09 AJUSTES ---------- -->
+          <section class="screen" data-screen="settings">
+            <div class="appbar">
+              <div>
+                <p class="kicker">CONFIG</p>
+                <h2>AJUSTES</h2>
+              </div>
+            </div>
+            <div class="content">
+              <p class="sectionLabel">RED</p>
+              <div class="setting">
+                <div class="sBody"><b>MULTICAST</b><small>239.255.42.99:47820</small></div>
+                <div class="switch on" data-toggle></div>
+              </div>
+              <div class="setting">
+                <div class="sBody"><b>PROBE AL ABRIR</b><small>UDP unicast al grupo</small></div>
+                <div class="switch on" data-toggle></div>
+              </div>
+              <div class="setting">
+                <div class="sBody"><b>FALLBACK HTTP</b><small>solo depuración · 47821</small></div>
+                <div class="switch" data-toggle></div>
+              </div>
+
+              <p class="sectionLabel">SYNC</p>
+              <div class="setting">
+                <div class="sBody"><b>COPIA .BAK</b><small>una por archivo</small></div>
+                <div class="switch on" data-toggle></div>
+              </div>
+              <div class="setting">
+                <div class="sBody"><b>SOLO WIFI</b><small>nunca datos móviles</small></div>
+                <div class="switch on" data-toggle></div>
+              </div>
+              <div class="setting">
+                <div class="sBody"><b>ESCANEO AUTOMÁTICO</b><small>solo lectura · 30 min</small></div>
+                <div class="switch" data-toggle></div>
+              </div>
+
+              <p class="sectionLabel">CACHÉ</p>
+              <div class="kv"><span>Room</span><b>2,8 MB</b></div>
+              <div class="kv"><span>Miniaturas</span><b>46 MB</b></div>
+              <div class="kv"><span>Último catálogo</span><b>HACE 2 MIN</b></div>
+              <button class="btn btn-ghost" style="margin-top:10px">VACIAR CACHÉ</button>
+
+              <p class="sectionLabel">SEGURIDAD</p>
+              <div class="kv"><span>Token</span><b>••••••3F9A</b></div>
+              <div class="kv"><span>Emparejada</span><b>12 OCT 2026</b></div>
+              <button class="btn btn-ghost" style="margin-top:10px">REGENERAR PIN</button>
+
+              <p class="footnote" style="text-align:center;margin-top:18px">MULTIRK 0.1 · MULTIRK/2<br>RK3326 · ARKOS</p>
+            </div>
+          </section>
+
+        </div><!-- viewport -->
+
+        <div class="toast" id="toast">CONSOLA EMPAREJADA</div>
+
+        <nav class="tabbar">
+          <button class="is-active" data-go="home">
+            <svg width="16" height="14" viewBox="0 0 22 16"><g fill="currentColor"><rect x="1" y="4" width="20" height="8"/><rect x="0" y="6" width="22" height="4"/></g></svg>
+            CONSOLAS
+          </button>
+          <button data-go="catalog">
+            <svg width="14" height="14" viewBox="0 0 14 14"><g fill="currentColor"><rect x="0" y="0" width="6" height="6"/><rect x="8" y="0" width="6" height="6"/><rect x="0" y="8" width="6" height="6"/><rect x="8" y="8" width="6" height="6"/></g></svg>
+            CATÁLOGO
+          </button>
+          <button data-go="controls">
+            <svg width="14" height="14" viewBox="0 0 16 16"><g fill="currentColor"><rect x="5" y="5" width="6" height="6"/><rect x="7" y="0" width="2" height="3"/><rect x="7" y="13" width="2" height="3"/><rect x="0" y="7" width="3" height="2"/><rect x="13" y="7" width="3" height="2"/></g></svg>
+            CONTROLES
+          </button>
+          <button data-go="settings">
+            <svg width="14" height="14" viewBox="0 0 14 14"><g fill="currentColor"><rect x="0" y="6" width="14" height="2"/><rect x="2" y="2" width="2" height="10"/><rect x="6" y="4" width="2" height="6"/><rect x="10" y="0" width="2" height="14"/></g></svg>
+            AJUSTES
+          </button>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ NOTES ============ -->
+  <aside class="notes">
+    <div class="noteCard">
+      <h4>TRANSPORTE</h4>
+      <p><b>UDP</b> solo para anunciarse y responder probes. <b>TCP</b> con frames de 16 bytes para catálogo, archivos y control.</p>
+      <p>Sin HTTP: cero parseo de cabeceras en la consola.</p>
+    </div>
+    <div class="noteCard">
+      <h4>AGENTE LIGERO</h4>
+      <p>Binario estático, sin dependencias. Índice en RAM, <code>GOMEMLIMIT=48MiB</code>, <code>Nice=10</code>, CPU 25 %.</p>
+    </div>
+    <div class="noteCard">
+      <h4>CONTROL</h4>
+      <p>Volumen por <code>amixer</code>/<code>pactl</code>. Brillo por sysfs con fallback a <code>brightnessctl</code>. Todo opcional y desactivable.</p>
+    </div>
+    <div class="noteCard">
+      <h4>INSTALACIÓN</h4>
+      <p><code>multirkctl install -host 192.168.1.42</code><br>Sube el binario correcto (arm64/armv7), crea el servicio y muestra el PIN.</p>
+    </div>
+  </aside>
+
+</div>
+
+<script>
+(function(){
+  const screens = Array.from(document.querySelectorAll('[data-screen]'));
+  const railBtns = Array.from(document.querySelectorAll('.railBtn'));
+  const tabBtns = Array.from(document.querySelectorAll('.tabbar [data-go]'));
+
+  function go(id){
+    if(!id) return;
+    screens.forEach(s => s.classList.toggle('is-active', s.dataset.screen === id));
+    railBtns.forEach(b => b.classList.toggle('is-active', b.dataset.go === id));
+    tabBtns.forEach(b => b.classList.toggle('is-active', b.dataset.go === id));
+    const sc = document.querySelector('[data-screen="' + id + '"] .content');
+    if(sc) sc.scrollTop = 0;
+    if(id === 'transfer') startTransfer();
+    if(id === 'controls') syncRanges();
+  }
+
+  document.addEventListener('click', function(e){
+    const target = e.target.closest('[data-go]');
+    if(target){ go(target.dataset.go); return; }
+    const sw = e.target.closest('[data-toggle]');
+    if(sw){ sw.classList.toggle('on'); }
+  });
+
+  /* ---------- descubrir ---------- */
+  const radar = document.getElementById('radar');
+  const scanBtn = document.getElementById('scanBtn');
+  const foundWrap = document.getElementById('foundWrap');
+  const lead = document.getElementById('discoverLead');
+
+  scanBtn.addEventListener('click', function(){
+    radar.classList.add('searching');
+    scanBtn.disabled = true;
+    scanBtn.textContent = 'BUSCANDO...';
+    lead.textContent = 'PROBE UDP AL GRUPO MULTICAST...';
+    setTimeout(function(){
+      radar.classList.remove('searching');
+      scanBtn.disabled = false;
+      scanBtn.textContent = 'VOLVER A BUSCAR';
+      lead.textContent = '2 CONSOLAS EN TU RED';
+      foundWrap.classList.remove('hidden');
+      showToast('2 CONSOLAS ENCONTRADAS');
+    }, 1400);
+  });
+
+  /* ---------- pin ---------- */
+  const pinDots = document.getElementById('pinDots');
+  const dots = Array.from(pinDots.querySelectorAll('span'));
+  const pinErr = document.getElementById('pinErr');
+  const pairBtn = document.getElementById('pairBtn');
+  let pin = '';
+  let busy = false;
+
+  function renderPin(){
+    dots.forEach(function(d, i){
+      d.textContent = i < pin.length ? '*' : '';
+      d.classList.toggle('filled', i < pin.length);
+    });
+    pairBtn.disabled = pin.length !== 6;
+  }
+
+  function resetPin(){
+    pin = '';
+    busy = false;
+    pinDots.classList.remove('ok', 'err');
+    pinErr.classList.add('hidden');
+    renderPin();
+  }
+
+  function tryPair(){
+    if(busy) return;
+    busy = true;
+    if(pin === '482913'){
+      pinDots.classList.add('ok');
+      pinErr.classList.add('hidden');
+      showToast('CONSOLA EMPAREJADA');
+      setTimeout(function(){
+        resetPin();
+        go('home');
+      }, 620);
+    } else {
+      pinDots.classList.add('err');
+      pinErr.classList.remove('hidden');
+      setTimeout(function(){
+        pinDots.classList.remove('err');
+        busy = false;
+      }, 420);
+    }
+  }
+
+  document.getElementById('keypad').addEventListener('click', function(e){
+    const b = e.target.closest('button');
+    if(!b) return;
+    const k = b.dataset.key;
+    if(k === 'del') pin = pin.slice(0, -1);
+    else if(k === 'ok'){ if(pin.length === 6) tryPair(); }
+    else if(pin.length < 6) pin += k;
+    renderPin();
+    if(k !== 'ok' && pin.length === 6) setTimeout(tryPair, 140);
+  });
+  pairBtn.addEventListener('click', tryPair);
+
+  /* ---------- catálogo ---------- */
+  const search = document.getElementById('gameSearch');
+  const cards = Array.from(document.querySelectorAll('#gamesGrid .gameCard'));
+  let filter = 'all';
+
+  function applyCatalog(){
+    const q = (search.value || '').trim().toLowerCase();
+    cards.forEach(function(c){
+      const byName = !q || c.dataset.name.indexOf(q) >= 0;
+      let byFilter = true;
+      if(filter === 'state') byFilter = c.dataset.state === '1';
+      else if(filter !== 'all') byFilter = c.dataset.system === filter;
+      c.style.display = (byName && byFilter) ? '' : 'none';
+    });
+  }
+  search.addEventListener('input', applyCatalog);
+  document.getElementById('catalogChips').addEventListener('click', function(e){
+    const chip = e.target.closest('.chip');
+    if(!chip) return;
+    document.querySelectorAll('#catalogChips .chip').forEach(c => c.classList.remove('is-active'));
+    chip.classList.add('is-active');
+    filter = chip.dataset.filter;
+    applyCatalog();
+  });
+
+  /* ---------- transferencia ---------- */
+  const bar = document.getElementById('bar');
+  const pctLabel = document.getElementById('pct');
+  const bytesLabel = document.getElementById('bytesLabel');
+  const steps = Array.from(document.querySelectorAll('#steps li'));
+  const doneCard = document.getElementById('doneCard');
+  const note = document.getElementById('transferNote');
+  let timer = null;
+
+  function resetTransfer(){
+    if(timer){ clearInterval(timer); timer = null; }
+    bar.style.width = '0%';
+    pctLabel.textContent = '0%';
+    bytesLabel.textContent = '0,0 / 1,2 MB';
+    steps.forEach(function(s){ s.classList.remove('active', 'done'); });
+    doneCard.classList.add('hidden');
+    note.classList.remove('hidden');
+  }
+
+  function startTransfer(){
+    resetTransfer();
+    let pct = 0;
+    steps[0].classList.add('active');
+    timer = setInterval(function(){
+      pct = Math.min(100, pct + Math.random() * 6 + 2.2);
+      bar.style.width = pct.toFixed(1) + '%';
+      pctLabel.textContent = Math.round(pct) + '%';
+      bytesLabel.textContent = (1.2 * pct / 100).toFixed(1).replace('.', ',') + ' / 1,2 MB';
+      steps.forEach(function(s){
+        const at = Number(s.dataset.at);
+        s.classList.toggle('done', pct >= at + 6);
+        s.classList.toggle('active', pct >= at && pct < at + 6);
+      });
+      if(pct >= 100){
+        clearInterval(timer); timer = null;
+        steps.forEach(function(s){ s.classList.remove('active'); s.classList.add('done'); });
+        pctLabel.textContent = '100%';
+        bytesLabel.textContent = '1,2 / 1,2 MB';
+        setTimeout(function(){
+          doneCard.classList.remove('hidden');
+          note.classList.add('hidden');
+          showToast('SAVE SINCRONIZADO');
+        }, 220);
+      }
+    }, 80);
+  }
+
+  /* ---------- controles ---------- */
+  const volRange = document.getElementById('volRange');
+  const volVal = document.getElementById('volVal');
+  const briRange = document.getElementById('briRange');
+  const briVal = document.getElementById('briVal');
+  const muteBtn = document.getElementById('muteBtn');
+  const ctlTarget = document.getElementById('ctlTarget');
+  let muted = false;
+  let target = 'RG351V';
+
+  function paintRange(r){
+    const pct = ((r.value - r.min) / (r.max - r.min)) * 100;
+    r.style.setProperty('--fill', pct + '%');
+  }
+
+  function syncRanges(){
+    volVal.textContent = volRange.value + '%';
+    briVal.textContent = briRange.value + '%';
+    paintRange(volRange);
+    paintRange(briRange);
+  }
+
+  volRange.addEventListener('input', function(){
+    volVal.textContent = volRange.value + '%';
+    paintRange(volRange);
+  });
+  briRange.addEventListener('input', function(){
+    briVal.textContent = briRange.value + '%';
+    paintRange(briRange);
+  });
+
+  function sendCtl(what, value){
+    showToast('TX ' + what + ' ' + value + '% · ' + target);
+  }
+
+  volRange.addEventListener('change', function(){ sendCtl('VOL', volRange.value); });
+  briRange.addEventListener('change', function(){ sendCtl('BRILLO', briRange.value); });
+
+  document.querySelectorAll('[data-vol]').forEach(function(b){
+    b.addEventListener('click', function(){
+      const v = Math.max(0, Math.min(100, Number(volRange.value) + Number(b.dataset.vol)));
+      volRange.value = v;
+      volVal.textContent = v + '%';
+      paintRange(volRange);
+      sendCtl('VOL', v);
+    });
+  });
+  document.querySelectorAll('[data-bri]').forEach(function(b){
+    b.addEventListener('click', function(){
+      const v = Math.max(5, Math.min(100, Number(briRange.value) + Number(b.dataset.bri)));
+      briRange.value = v;
+      briVal.textContent = v + '%';
+      paintRange(briRange);
+      sendCtl('BRILLO', v);
+    });
+  });
+  muteBtn.addEventListener('click', function(){
+    muted = !muted;
+    muteBtn.classList.toggle('is-on', muted);
+    showToast(muted ? 'MUTE ON · ' + target : 'MUTE OFF · ' + target);
+  });
+  document.getElementById('dimBtn').addEventListener('click', function(){
+    briRange.value = 25;
+    briVal.textContent = '25%';
+    paintRange(briRange);
+    sendCtl('BRILLO', 25);
+  });
+
+  document.getElementById('consolePick').addEventListener('click', function(e){
+    const b = e.target.closest('.pick');
+    if(!b) return;
+    document.querySelectorAll('#consolePick .pick').forEach(p => p.classList.remove('is-active'));
+    b.classList.add('is-active');
+    target = b.dataset.ctl.split(' ')[0];
+    ctlTarget.textContent = target;
+    showToast('DESTINO: ' + b.dataset.ctl);
+  });
+
+  /* ---------- toast ---------- */
+  const toast = document.getElementById('toast');
+  let toastTimer = null;
+  function showToast(msg){
+    toast.textContent = msg;
+    toast.classList.add('show');
+    if(toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toast.classList.remove('show'); }, 2000);
+  }
+
+  /* init */
+  syncRanges();
+  if(location.hash){
+    const id = location.hash.slice(1);
+    if(document.querySelector('[data-screen="' + id + '"]')) go(id);
+  }
+})();
+</script>
+</body>
+</html>
